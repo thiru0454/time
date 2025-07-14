@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 64 64">
+  <defs>
+    <radialGradient id="g" cx="50%" cy="50%" r="70%">
+      <stop offset="0%" stop-color="#a78bfa"/>
+      <stop offset="100%" stop-color="#6d28d9"/>
+    </radialGradient>
+  </defs>
+  <circle cx="32" cy="32" r="30" fill="url(#g)" />
+  <text x="50%" y="56%" font-size="26" font-family="Segoe UI, Arial, sans-serif" font-weight="bold" fill="#fff" text-anchor="middle" alignment-baseline="middle" style="text-shadow:0 2px 6px #4b2991;">TTG</text>
+</svg>
