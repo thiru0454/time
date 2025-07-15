@@ -308,10 +308,7 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
     <div className="space-y-6 pb-10">
       <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
         <div className="text-center mb-6">
-          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
-            Intelligent Timetable Generator
-          </h2>
-          <p className="text-gray-600">Advanced AI-powered scheduling with automatic mandatory subjects</p>
+          {/* Removed heading and description about Intelligent Timetable Generator and AI-powered scheduling */}
         </div>
 
         {/* Enhanced Mandatory Subjects Notice */}

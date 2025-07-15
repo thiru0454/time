@@ -7,6 +7,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import TimetableManagement from "./pages/TimetableManagement";
 import NotFound from "./pages/NotFound";
+import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 const queryClient = new QueryClient();
 
@@ -16,7 +18,8 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <div className="smooth-scroll">
+        <Navbar />
+        <div className="smooth-scroll min-h-[80vh] flex flex-col">
           <Routes>
             <Route path="/" element={<Index />} />
             <Route path="/timetable-management" element={<TimetableManagement />} />
@@ -24,6 +27,7 @@ const App = () => (
             <Route path="*" element={<NotFound />} />
           </Routes>
         </div>
+        <Footer />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

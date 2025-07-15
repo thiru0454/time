@@ -36,11 +36,7 @@ const Index = () => {
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in">
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-shimmer animate-bounce-in">
-            SmartTimely
-          </h1>
-          <p className="text-xl font-semibold text-gray-700 mb-1 animate-slide-up">AI-Powered Academic Scheduler</p>
-          <p className="text-gray-600 text-lg animate-slide-up">Intelligent Timetable Generator for Educational Institutions</p>
+          {/* Removed SmartTimely, AI-Powered Academic Scheduler, and Intelligent Timetable Generator for Educational Institutions */}
         </div>
 
         {/* Data Dashboard */}
