@@ -163,6 +163,7 @@ export type Database = {
       }
       subjects: {
         Row: {
+          abbreviation: string | null
           code: string
           created_at: string | null
           credits: number | null
@@ -174,6 +175,7 @@ export type Database = {
           year_id: string | null
         }
         Insert: {
+          abbreviation?: string | null
           code: string
           created_at?: string | null
           credits?: number | null
@@ -185,6 +187,7 @@ export type Database = {
           year_id?: string | null
         }
         Update: {
+          abbreviation?: string | null
           code?: string
           created_at?: string | null
           credits?: number | null
@@ -354,6 +357,38 @@ export type Database = {
         }
         Relationships: []
       }
+      profiles: {
+        Row: {
+          id: string;
+          role: string;
+          full_name: string | null;
+          avatar_url: string | null;
+          updated_at: string | null;
+        };
+        Insert: {
+          id: string;
+          role?: string;
+          full_name?: string | null;
+          avatar_url?: string | null;
+          updated_at?: string | null;
+        };
+        Update: {
+          id?: string;
+          role?: string;
+          full_name?: string | null;
+          avatar_url?: string | null;
+          updated_at?: string | null;
+        };
+        Relationships: [
+          {
+            foreignKeyName: "profiles_id_fkey",
+            columns: ["id"],
+            isOneToOne: true,
+            referencedRelation: "users",
+            referencedColumns: ["id"]
+          }
+        ];
+      },
     }
     Views: {
       [_ in never]: never

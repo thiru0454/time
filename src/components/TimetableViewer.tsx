@@ -137,10 +137,10 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
 
   if (!currentTimetable) {
     return (
-      <Card className="p-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm text-center">
+      <Card className="p-8 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm text-center">
         <Calendar size={48} className="mx-auto mb-4 text-gray-400" />
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Timetable Viewer</h2>
-        <p className="text-gray-600 mb-4">No timetable available.</p>
+        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-zinc-100">Timetable Viewer</h2>
+        <p className="text-gray-600 dark:text-zinc-400 mb-4">No timetable available.</p>
         <div className="flex justify-center gap-4">
           <Button 
             onClick={() => setShowHistoryDialog(true)}
@@ -190,31 +190,31 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
   const getSubjectTypeColor = (type: string) => {
     switch (type?.toLowerCase()) {
       case 'theory':
-        return 'bg-blue-100 text-blue-800 border-blue-300';
+        return 'bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-800';
       case 'practical':
-        return 'bg-green-100 text-green-800 border-green-300';
+        return 'bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-300 dark:border-green-800';
       case 'lab':
-        return 'bg-purple-100 text-purple-800 border-purple-300';
+        return 'bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-800';
       case 'tutorial':
-        return 'bg-orange-100 text-orange-800 border-orange-300';
+        return 'bg-orange-100 dark:bg-orange-900 text-orange-800 dark:text-orange-200 border-orange-300 dark:border-orange-800';
       default:
-        return 'bg-gray-100 text-gray-800 border-gray-300';
+        return 'bg-gray-100 dark:bg-zinc-900 text-gray-800 dark:text-zinc-100 border-gray-300 dark:border-zinc-700';
     }
   };
 
   return (
     <div className="space-y-6 pb-20">
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="p-6 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm">
         <div className="flex justify-between items-center mb-6">
           <div className="text-center flex-1">
-            <h2 className="text-2xl font-bold text-gray-800 mb-2">Timetable</h2>
-            <p className="text-gray-600">Weekly schedule for the selected class</p>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-zinc-100 mb-2">Timetable</h2>
+            <p className="text-gray-600 dark:text-zinc-400">Weekly schedule for the selected class</p>
             {selectedTimetable && (
               <div className="mt-2">
-                <Badge variant="outline" className="bg-blue-100 text-blue-800">
+                <Badge variant="outline" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
                   {selectedTimetable.name}
                 </Badge>
-                <p className="text-xs text-gray-500 mt-1">
+                <p className="text-xs text-gray-500 dark:text-zinc-400 mt-1">
                   Created: {formatDate(selectedTimetable.created_at)}
                 </p>
               </div>
@@ -245,21 +245,21 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
 
         {/* Timetable Grid */}
         <div className="overflow-x-auto">
-          <Table className="w-full border-collapse border border-gray-300">
+          <Table className="w-full border-collapse border border-gray-300 dark:border-zinc-700">
             <TableHeader>
               <TableRow>
-                <TableHead rowSpan={2} className="text-center border border-gray-300 bg-gray-100 font-bold">
+                <TableHead rowSpan={2} className="text-center border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 font-bold">
                   Day
                 </TableHead>
                 {periodNumbers.map((period, index) => (
-                  <TableHead key={index} className="text-center border border-gray-300 bg-gray-100 font-bold min-w-[120px]">
+                  <TableHead key={index} className="text-center border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 font-bold min-w-[120px]">
                     {period}
                   </TableHead>
                 ))}
               </TableRow>
               <TableRow>
                 {timeSlots.map((slot, index) => (
-                  <TableHead key={index} className="text-center border border-gray-300 bg-gray-50 text-xs p-1">
+                  <TableHead key={index} className="text-center border border-gray-300 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-900 text-xs p-1">
                     {slot}
                   </TableHead>
                 ))}
@@ -268,32 +268,32 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
             <TableBody>
               {days.map((day) => (
                 <TableRow key={day}>
-                  <TableCell className="text-center border border-gray-300 font-medium bg-gray-50">
+                  <TableCell className="text-center border border-gray-300 dark:border-zinc-700 font-medium bg-gray-50 dark:bg-zinc-900">
                     {day}
                   </TableCell>
                   {timeSlots.map((timeSlot, index) => {
                     const slot = currentTimetable[day]?.[timeSlot];
                     
                     return (
-                      <TableCell key={`${day}-${timeSlot}`} className="border border-gray-300 p-2 text-center">
+                      <TableCell key={`${day}-${timeSlot}`} className="border border-gray-300 dark:border-zinc-700 p-2 text-center">
                         {index === 4 ? ( // Lunch break
-                          <div className="text-gray-500 text-sm font-medium">
+                          <div className="text-gray-500 dark:text-zinc-400 text-sm font-medium">
                             LUNCH BREAK
                           </div>
                         ) : slot ? (
                           <div className="space-y-1">
-                            <div className="font-bold text-sm text-gray-800">
+                            <div className="font-bold text-sm text-gray-800 dark:text-zinc-100">
                               {getSubjectAbbreviation(slot.subjectCode)}
                             </div>
-                            <div className="text-xs text-blue-600 font-medium">
+                            <div className="text-xs text-blue-600 dark:text-blue-400 font-medium">
                               {slot.faculty}
                             </div>
-                            <div className="text-xs text-gray-500">
+                            <div className="text-xs text-gray-500 dark:text-zinc-400">
                               {slot.subjectCode}
                             </div>
                           </div>
                         ) : (
-                          <div className="text-gray-400 text-xs">
+                          <div className="text-gray-400 dark:text-zinc-400 text-xs">
                             Free
                           </div>
                         )}
@@ -308,19 +308,19 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
 
         {/* Enhanced Subject Details Table with Faculty Information */}
         <div className="mt-8">
-          <h3 className="text-lg font-semibold mb-4">Subject Details with Faculty Assignment</h3>
-          <Table className="w-full border-collapse border border-gray-300">
+          <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-zinc-100">Subject Details with Faculty Assignment</h3>
+          <Table className="w-full border-collapse border border-gray-300 dark:border-zinc-700">
             <TableHeader>
               <TableRow>
-                <TableHead className="border border-gray-300 bg-gray-100">Sub. Code</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Abbreviation</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Course Title</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Type</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Hours/Week</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Credits</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Faculty Name</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Faculty Email</TableHead>
-                <TableHead className="border border-gray-300 bg-gray-100">Specialization</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Sub. Code</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Abbreviation</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Course Title</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Type</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Hours/Week</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Credits</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Faculty Name</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Faculty Email</TableHead>
+                <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Specialization</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -339,27 +339,27 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
                 
                 return (
                   <TableRow key={subject.id}>
-                    <TableCell className="border border-gray-300 font-medium">{subject.code}</TableCell>
-                    <TableCell className="border border-gray-300">
-                      <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-300">
+                    <TableCell className="border border-gray-300 dark:border-zinc-700 font-medium text-gray-800 dark:text-zinc-100">{subject.code}</TableCell>
+                    <TableCell className="border border-gray-300 dark:border-zinc-700">
+                      <Badge variant="secondary" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-800">
                         {subject.abbreviation || 'N/A'}
                       </Badge>
                     </TableCell>
-                    <TableCell className="border border-gray-300">{subject.name}</TableCell>
-                    <TableCell className="border border-gray-300">
+                    <TableCell className="border border-gray-300 dark:border-zinc-700 text-gray-800 dark:text-zinc-100">{subject.name}</TableCell>
+                    <TableCell className="border border-gray-300 dark:border-zinc-700">
                       <Badge variant="outline" className={getSubjectTypeColor(subject.subject_type)}>
                         {subject.subject_type}
                       </Badge>
                     </TableCell>
-                    <TableCell className="border border-gray-300 text-center">{subject.hours_per_week}</TableCell>
-                    <TableCell className="border border-gray-300 text-center">{subject.credits}</TableCell>
-                    <TableCell className="border border-gray-300">
+                    <TableCell className="border border-gray-300 dark:border-zinc-700 text-center text-gray-800 dark:text-zinc-100">{subject.hours_per_week}</TableCell>
+                    <TableCell className="border border-gray-300 dark:border-zinc-700 text-center text-gray-800 dark:text-zinc-100">{subject.credits}</TableCell>
+                    <TableCell className="border border-gray-300 dark:border-zinc-700 text-gray-800 dark:text-zinc-100">
                       {assignedFaculty ? assignedFaculty.name : 'Not Assigned'}
                     </TableCell>
-                    <TableCell className="border border-gray-300">
+                    <TableCell className="border border-gray-300 dark:border-zinc-700 text-gray-800 dark:text-zinc-100">
                       {assignedFaculty ? assignedFaculty.email || 'N/A' : 'N/A'}
                     </TableCell>
-                    <TableCell className="border border-gray-300">
+                    <TableCell className="border border-gray-300 dark:border-zinc-700 text-gray-800 dark:text-zinc-100">
                       {assignedFaculty && assignedFaculty.specialization ? 
                         assignedFaculty.specialization.join(', ') : 'N/A'}
                     </TableCell>
@@ -371,33 +371,33 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
         </div>
 
         {/* Summary Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6 pt-6 border-t border-gray-300 dark:border-zinc-700">
           <div className="text-center">
-            <div className="text-2xl font-bold text-blue-600">
+            <div className="text-2xl font-bold text-blue-600 dark:text-blue-400">
               {subjects.length}
             </div>
-            <div className="text-sm text-gray-600">Total Subjects</div>
+            <div className="text-sm text-gray-600 dark:text-zinc-400">Total Subjects</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-green-600">
+            <div className="text-2xl font-bold text-green-600 dark:text-green-400">
               {faculty.length}
             </div>
-            <div className="text-sm text-gray-600">Faculty Members</div>
+            <div className="text-sm text-gray-600 dark:text-zinc-400">Faculty Members</div>
           </div>
           <div className="text-center">
-            <div className="text-2xl font-bold text-purple-600">
+            <div className="text-2xl font-bold text-purple-600 dark:text-purple-400">
               {subjects.reduce((sum, subject) => sum + subject.hours_per_week, 0)}
             </div>
-            <div className="text-sm text-gray-600">Hours per Week</div>
+            <div className="text-sm text-gray-600 dark:text-zinc-400">Hours per Week</div>
           </div>
         </div>
       </Card>
 
       {/* Timetable History Dialog */}
       <Dialog open={showHistoryDialog} onOpenChange={setShowHistoryDialog}>
-        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto dark:bg-zinc-900 dark:border-zinc-700">
           <DialogHeader>
-            <DialogTitle className="text-xl font-semibold flex items-center gap-2">
+            <DialogTitle className="text-xl font-semibold flex items-center gap-2 text-gray-800 dark:text-zinc-100">
               <History className="h-5 w-5 text-blue-600" />
               Timetable History
             </DialogTitle>
@@ -409,29 +409,29 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
           {isLoading ? (
             <div className="text-center py-8">
               <div className="rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4"></div>
-              <p className="text-gray-600">Loading timetables...</p>
+              <p className="text-gray-600 dark:text-zinc-400">Loading timetables...</p>
             </div>
           ) : storedTimetables.length === 0 ? (
             <div className="text-center py-8">
-              <Calendar className="h-12 w-12 text-gray-400 mx-auto mb-4" />
-              <p className="text-gray-600">No stored timetables found</p>
-              <p className="text-sm text-gray-500">Generate a timetable first to see it here</p>
+              <Calendar className="h-12 w-12 text-gray-400" />
+              <p className="text-gray-600 dark:text-zinc-400">No stored timetables found</p>
+              <p className="text-sm text-gray-500 dark:text-zinc-400">Generate a timetable first to see it here</p>
             </div>
           ) : (
             <div className="space-y-4">
               {storedTimetables.map((timetable) => (
-                <Card key={timetable.id} className="p-4 border">
+                <Card key={timetable.id} className="p-4 border border-gray-300 dark:border-zinc-700">
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
-                        <h3 className="font-semibold text-gray-800">{timetable.name}</h3>
+                        <h3 className="font-semibold text-gray-800 dark:text-zinc-100">{timetable.name}</h3>
                         {timetable.is_active && (
-                          <Badge variant="secondary" className="bg-green-100 text-green-800">
+                          <Badge variant="secondary" className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
                             Active
                           </Badge>
                         )}
                       </div>
-                      <div className="text-sm text-gray-600 space-y-1">
+                      <div className="text-sm text-gray-600 dark:text-zinc-400 space-y-1">
                         <p>Created: {formatDate(timetable.created_at)}</p>
                         <p>Updated: {formatDate(timetable.updated_at)}</p>
                         {timetable.notes && <p>Notes: {timetable.notes}</p>}
@@ -467,7 +467,7 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
                         onClick={() => handleDeleteTimetable(timetable.id)}
                         variant="outline"
                         size="sm"
-                        className="flex items-center gap-1 text-red-600 hover:text-red-700"
+                        className="flex items-center gap-1 text-red-600 dark:text-red-400 hover:text-red-700 dark:hover:text-red-300"
                       >
                         <Trash2 className="h-4 w-4" />
                         Delete

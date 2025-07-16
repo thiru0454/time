@@ -272,9 +272,9 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
 
   if (!selectedDepartment || !selectedYear || !selectedSection) {
     return (
-      <Card className="p-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm text-center">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Faculty Manager</h2>
-        <p className="text-gray-600 mb-4">Please select department, year, and section from the dashboard first.</p>
+      <Card className="p-8 shadow-lg border-0 bg-background/80 dark:bg-background/90 backdrop-blur-sm text-center">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-gray-100">Faculty Manager</h2>
+        <p className="text-gray-600 dark:text-gray-300 mb-4">Please select department, year, and section from the dashboard first.</p>
         <Button variant="outline" onClick={() => window.history.back()}>
           Go Back to Dashboard
         </Button>
@@ -283,10 +283,10 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
   }
 
   return (
-          <div className="space-y-6">
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm interactive-card">
+    <div className="space-y-6">
+      <Card className="p-6 shadow-lg border-0 bg-background/80 dark:bg-background/90 interactive-card">
         <div className="flex justify-between items-center mb-6">
-          <h2 className="text-2xl font-bold text-gray-800 text-glow">Faculty Management</h2>
+          <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-glow">Faculty Management</h2>
           <Button 
             onClick={() => setIsAddingFaculty(true)}
             className="bg-gradient-to-r from-green-600 to-teal-600 hover:from-green-700 hover:to-teal-700 interactive-button"
@@ -298,11 +298,11 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
 
         {/* Add Faculty Form */}
         {isAddingFaculty && (
-          <Card className="p-4 mb-6 bg-gradient-to-r from-green-50 to-teal-50 border border-green-200 card-bounce">
-            <h3 className="text-lg font-semibold mb-4 text-glow">Add New Faculty Member</h3>
+          <Card className="p-4 mb-6 bg-background/80 dark:bg-background/90 border border-green-200 dark:border-green-800 card-bounce">
+            <h3 className="text-lg font-semibold mb-4 text-glow text-gray-800 dark:text-gray-100">Add New Faculty Member</h3>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
               <div className="form-card-animate">
-                <label className="block text-sm font-medium mb-2">Name *</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Name *</label>
                 <Input
                   value={newFaculty.name || ''}
                   onChange={(e) => setNewFaculty({...newFaculty, name: e.target.value})}
@@ -311,7 +311,7 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                 />
               </div>
               <div className="form-card-animate">
-                <label className="block text-sm font-medium mb-2">Email *</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Email *</label>
                 <Input
                   type="email"
                   value={newFaculty.email || ''}
@@ -327,7 +327,7 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                 )}
               </div>
               <div className="form-card-animate">
-                <label className="block text-sm font-medium mb-2">Max Hours per Week</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Max Hours per Week</label>
                 <Input
                   type="number"
                   value={newFaculty.max_hours_per_week || 20}
@@ -338,7 +338,7 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                 />
               </div>
               <div className="form-card-animate">
-                <label className="block text-sm font-medium mb-2">Add Specialization</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Add Specialization</label>
                 <div className="flex gap-2">
                   <Input
                     value={newSpecialization}
@@ -357,10 +357,10 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
             {/* Specializations */}
             {newFaculty.specialization && newFaculty.specialization.length > 0 && (
               <div className="mb-4">
-                <label className="block text-sm font-medium mb-2">Specializations</label>
+                <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Specializations</label>
                 <div className="flex flex-wrap gap-2">
                   {newFaculty.specialization.map((spec, index) => (
-                    <Badge key={index} variant="secondary" className="cursor-pointer" onClick={() => removeSpecialization(index)}>
+                    <Badge key={index} variant="secondary" className="cursor-pointer">
                       {spec} <X size={12} className="ml-1" />
                     </Badge>
                   ))}
@@ -393,20 +393,20 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
         {/* Faculty List */}
         <div className="space-y-4">
           {faculty.length === 0 ? (
-            <div className="text-center py-8 text-gray-500">
+            <div className="text-center py-8 text-gray-500 dark:text-gray-400">
               <Users size={48} className="mx-auto mb-4 opacity-50" />
               <p>No faculty members added yet. Click "Add Faculty" to get started.</p>
             </div>
           ) : (
             faculty.map((facultyMember) => (
-              <Card key={facultyMember.id} className="p-4 hover:bg-gray-50 transition-colors">
+              <Card key={facultyMember.id} className="p-4 hover:bg-background/80 dark:hover:bg-background/90 transition-colors">
                 {editingFaculty === facultyMember.id ? (
                   // Edit Mode
                   <div className="space-y-4">
-                    <h3 className="text-lg font-semibold text-gray-800">Edit Faculty Member</h3>
+                    <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">Edit Faculty Member</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       <div>
-                        <label className="block text-sm font-medium mb-2">Name *</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Name *</label>
                         <Input
                           value={editFormData.name || ''}
                           onChange={(e) => setEditFormData({...editFormData, name: e.target.value})}
@@ -414,7 +414,7 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">Email *</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Email *</label>
                         <Input
                           type="email"
                           value={editFormData.email || ''}
@@ -430,7 +430,7 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                         )}
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">Max Hours per Week</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Max Hours per Week</label>
                         <Input
                           type="number"
                           value={editFormData.max_hours_per_week || 20}
@@ -440,7 +440,7 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                         />
                       </div>
                       <div>
-                        <label className="block text-sm font-medium mb-2">Add Specialization</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Add Specialization</label>
                         <div className="flex gap-2">
                           <Input
                             value={editSpecialization}
@@ -458,10 +458,10 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                     {/* Edit Specializations */}
                     {editFormData.specialization && editFormData.specialization.length > 0 && (
                       <div>
-                        <label className="block text-sm font-medium mb-2">Specializations</label>
+                        <label className="block text-sm font-medium mb-2 text-gray-700 dark:text-gray-200">Specializations</label>
                         <div className="flex flex-wrap gap-2">
                           {editFormData.specialization.map((spec, index) => (
-                            <Badge key={index} variant="secondary" className="cursor-pointer" onClick={() => removeEditSpecialization(index)}>
+                            <Badge key={index} variant="secondary" className="cursor-pointer">
                               {spec} <X size={12} className="ml-1" />
                             </Badge>
                           ))}
@@ -485,39 +485,31 @@ const FacultyManager: React.FC<FacultyManagerProps> = ({
                   <div className="flex items-center justify-between">
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <h3 className="text-lg font-semibold text-gray-800">{facultyMember.name}</h3>
-                        <Badge variant="outline" className="text-green-600 border-green-300">
+                        <h3 className="text-lg font-semibold text-gray-800 dark:text-gray-100">{facultyMember.name}</h3>
+                        <Badge variant="outline" className="text-green-600 border-green-300 dark:text-green-300 dark:border-green-700">
                           {facultyMember.email}
                         </Badge>
-                        <Badge className="bg-blue-100 text-blue-800 border-blue-300">
+                        <Badge className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-700">
                           {facultyMember.max_hours_per_week}h/week max
                         </Badge>
                       </div>
                       
                       {facultyMember.specialization && facultyMember.specialization.length > 0 && (
                         <div className="flex flex-wrap gap-1 mt-2">
-                          <span className="text-sm text-gray-600 mr-2">Specializations:</span>
+                          <span className="text-sm text-gray-600 dark:text-gray-300 mr-2">Specializations:</span>
                           {facultyMember.specialization.map((spec, index) => (
-                            <Badge key={index} variant="secondary">{spec}</Badge>
+                            <Badge key={index} variant="secondary" className="cursor-pointer">
+                              {spec}
+                            </Badge>
                           ))}
                         </div>
                       )}
                     </div>
                     <div className="flex gap-2">
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleEditFaculty(facultyMember)}
-                        className="text-blue-600 hover:text-blue-700 hover:bg-blue-50"
-                      >
+                      <Button variant="outline" size="icon" onClick={() => handleEditFaculty(facultyMember)}>
                         <Edit size={16} />
                       </Button>
-                      <Button
-                        size="sm"
-                        variant="outline"
-                        onClick={() => handleDeleteFaculty(facultyMember.id)}
-                        className="text-red-600 hover:text-red-700 hover:bg-red-50"
-                      >
+                      <Button variant="destructive" size="icon" onClick={() => handleDeleteFaculty(facultyMember.id)}>
                         <X size={16} />
                       </Button>
                     </div>

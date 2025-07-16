@@ -32,11 +32,15 @@ const Index = () => {
   const isSetupComplete = selectedDepartment && selectedYear && selectedSection;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 page-transition">
+    <div className="min-h-screen bg-background text-foreground page-transition">
       <div className="container mx-auto px-4 py-8">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in">
-          {/* Removed SmartTimely, AI-Powered Academic Scheduler, and Intelligent Timetable Generator for Educational Institutions */}
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-shimmer animate-bounce-in">
+            SmartTimely
+          </h1>
+          <p className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-1 animate-slide-up">AI-Powered Academic Scheduler</p>
+          <p className="text-gray-600 dark:text-gray-300 text-lg animate-slide-up">Intelligent Timetable Generator for Educational Institutions</p>
         </div>
 
         {/* Data Dashboard */}
@@ -54,12 +58,12 @@ const Index = () => {
 
         {/* Proceed Button */}
         {isSetupComplete && (
-          <Card className="mt-8 p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm text-center animate-scale-in card-hover">
+          <Card className="mt-8 p-6 shadow-lg border-0 bg-background/80 dark:bg-background/90 backdrop-blur-sm text-center animate-scale-in card-hover">
             <div className="flex items-center justify-center gap-4 mb-4">
               <CheckCircle className="h-8 w-8 text-green-600 animate-pulse-slow" />
               <div>
-                <h3 className="text-xl font-semibold text-gray-800">Setup Complete!</h3>
-                <p className="text-gray-600">Ready to manage your timetable</p>
+                <h3 className="text-xl font-semibold text-gray-800 dark:text-gray-100">Setup Complete!</h3>
+                <p className="text-gray-600 dark:text-gray-300">Ready to manage your timetable</p>
               </div>
             </div>
             
@@ -75,23 +79,23 @@ const Index = () => {
         )}
 
         {/* Instructions */}
-        <Card className="mt-8 p-6 shadow-lg border-0 bg-gradient-to-r from-indigo-50 to-blue-50 border-indigo-200 animate-slide-up card-hover">
-          <h4 className="font-medium mb-3 text-indigo-800">Getting Started</h4>
-          <div className="space-y-2 text-sm text-gray-700 stagger-animation">
+        <Card className="mt-8 p-6 shadow-lg border-0 bg-background/80 dark:bg-background/90 border-indigo-200 dark:border-indigo-700 animate-slide-up card-hover">
+          <h4 className="font-medium mb-3 text-indigo-800 dark:text-indigo-200">Getting Started</h4>
+          <div className="space-y-2 text-sm text-gray-700 dark:text-gray-200 stagger-animation">
             <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${selectedDepartment ? 'bg-green-500 scale-125' : 'bg-gray-300'}`}></div>
+              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${selectedDepartment ? 'bg-green-500 scale-125' : 'bg-gray-300 dark:bg-gray-700'}`}></div>
               <span>Select your department</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${selectedYear ? 'bg-green-500 scale-125' : 'bg-gray-300'}`}></div>
+              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${selectedYear ? 'bg-green-500 scale-125' : 'bg-gray-300 dark:bg-gray-700'}`}></div>
               <span>Choose the academic year</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${selectedSection ? 'bg-green-500 scale-125' : 'bg-gray-300'}`}></div>
+              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${selectedSection ? 'bg-green-500 scale-125' : 'bg-gray-300 dark:bg-gray-700'}`}></div>
               <span>Pick the section</span>
             </div>
             <div className="flex items-center gap-2">
-              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isSetupComplete ? 'bg-green-500 scale-125' : 'bg-gray-300'}`}></div>
+              <div className={`w-2 h-2 rounded-full transition-all duration-300 ${isSetupComplete ? 'bg-green-500 scale-125' : 'bg-gray-300 dark:bg-gray-700'}`}></div>
               <span>Proceed to timetable management</span>
             </div>
           </div>

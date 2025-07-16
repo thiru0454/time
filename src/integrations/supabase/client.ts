@@ -15,3 +15,34 @@ export const supabase = createClient<Database>(SUPABASE_URL, SUPABASE_PUBLISHABL
     autoRefreshToken: true,
   }
 });
+
+// Auth helper functions
+export async function signUp({ email, password }: { email: string; password: string }) {
+  return supabase.auth.signUp({ email, password });
+}
+
+export async function signIn({ email, password }: { email: string; password: string }) {
+  return supabase.auth.signInWithPassword({ email, password });
+}
+
+export async function signOut() {
+  return supabase.auth.signOut();
+}
+
+export async function resetPassword(email: string) {
+  return supabase.auth.resetPasswordForEmail(email);
+}
+
+export function getUser() {
+  return supabase.auth.getUser();
+}
+
+// Create a profile for a new user
+export async function createProfile({ id, role = 'student', full_name = '', avatar_url = '' }: { id: string, role?: string, full_name?: string, avatar_url?: string }) {
+  return supabase.from('profiles').insert([{ id, role, full_name, avatar_url }]);
+}
+
+// Fetch a profile by user id
+export async function getProfileById(id: string) {
+  return supabase.from('profiles').select('*').eq('id', id).single();
+}

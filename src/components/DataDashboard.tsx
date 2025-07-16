@@ -59,28 +59,28 @@ const DataDashboard: React.FC<DataDashboardProps> = ({
 
   if (loading) {
     return (
-      <Card className="p-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm text-center animate-bounce-in">
+      <Card className="p-8 shadow-lg border-0 bg-background/80 dark:bg-background/90 backdrop-blur-sm text-center animate-bounce-in">
         <div className="rounded-full h-8 w-8 border-b-2 border-blue-600 mx-auto mb-4 animate-spin"></div>
-        <p className="text-gray-600 loading-dots">Loading academic data</p>
+        <p className="text-gray-600 dark:text-gray-300 loading-dots">Loading academic data</p>
       </Card>
     );
   }
 
   return (
     <div className="space-y-6 animate-fade-in">
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm card-hover animate-slide-up">
+      <Card className="p-6 shadow-lg border-0 bg-background/80 dark:bg-background/90 backdrop-blur-sm card-hover animate-slide-up">
         <div className="flex items-center gap-3 mb-6">
           <Database className="h-8 w-8 text-green-600 animate-float" />
           <div>
-            <h2 className="text-2xl font-bold text-gray-800 text-glow">Academic Data Dashboard</h2>
-            <p className="text-gray-600">Manage academic information and settings</p>
+            <h2 className="text-2xl font-bold text-gray-800 dark:text-gray-100 text-glow">Academic Data Dashboard</h2>
+            <p className="text-gray-600 dark:text-gray-300">Manage academic information and settings</p>
           </div>
         </div>
 
         {/* Selection Controls */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6 stagger-animation">
           <div className="animate-slide-up">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Department</label>
             <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
               <SelectTrigger className="h-12 hover-scale">
                 <SelectValue placeholder="Select Department" />
@@ -96,7 +96,7 @@ const DataDashboard: React.FC<DataDashboardProps> = ({
           </div>
 
           <div className="animate-slide-up">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Year</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Year</label>
             <Select value={selectedYear} onValueChange={setSelectedYear}>
               <SelectTrigger className="h-12 hover-scale">
                 <SelectValue placeholder="Select Year" />
@@ -112,7 +112,7 @@ const DataDashboard: React.FC<DataDashboardProps> = ({
           </div>
 
           <div className="animate-slide-up">
-            <label className="block text-sm font-medium text-gray-700 mb-2">Section</label>
+            <label className="block text-sm font-medium text-gray-700 dark:text-gray-200 mb-2">Section</label>
             <Select value={selectedSection} onValueChange={setSelectedSection}>
               <SelectTrigger className="h-12 hover-scale">
                 <SelectValue placeholder="Select Section" />
@@ -130,72 +130,72 @@ const DataDashboard: React.FC<DataDashboardProps> = ({
 
         {/* Status Cards */}
         <div className="grid grid-cols-1 md:grid-cols-3 gap-4 stagger-animation">
-          <Card className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 border border-blue-200 card-hover animate-float">
+          <Card className="p-4 bg-background/80 dark:bg-background/90 border border-blue-200 dark:border-blue-800 card-hover animate-float">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-blue-600">Subjects Available</p>
-                <p className="text-2xl font-bold text-blue-800">{availableSubjects.length}</p>
+                <p className="text-sm font-medium text-blue-600 dark:text-blue-300">Subjects Available</p>
+                <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">{availableSubjects.length}</p>
               </div>
-              <BookOpen className="h-8 w-8 text-blue-600 animate-float" />
+              <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-300 animate-float" />
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-r from-green-50 to-green-100 border border-green-200 card-hover animate-float">
+          <Card className="p-4 bg-background/80 dark:bg-background/90 border border-green-200 dark:border-green-800 card-hover animate-float">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-green-600">Faculty Members</p>
-                <p className="text-2xl font-bold text-green-800">{availableFaculty.length}</p>
+                <p className="text-sm font-medium text-green-600 dark:text-green-300">Faculty Members</p>
+                <p className="text-2xl font-bold text-green-800 dark:text-green-200">{availableFaculty.length}</p>
               </div>
-              <Users className="h-8 w-8 text-green-600 animate-float" />
+              <Users className="h-8 w-8 text-green-600 dark:text-green-300 animate-float" />
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 border border-purple-200 card-hover animate-float">
+          <Card className="p-4 bg-background/80 dark:bg-background/90 border border-purple-200 dark:border-purple-800 card-hover animate-float">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-purple-600">Setup Status</p>
+                <p className="text-sm font-medium text-purple-600 dark:text-purple-300">Setup Status</p>
                 <div className="flex items-center gap-2 mt-1">
                   {selectedDepartment && selectedYear && selectedSection ? (
                     <>
-                      <CheckCircle className="h-4 w-4 text-green-600 animate-pulse-slow" />
-                      <span className="text-sm font-medium text-green-600">Ready</span>
+                      <CheckCircle className="h-4 w-4 text-green-600 dark:text-green-300 animate-pulse-slow" />
+                      <span className="text-sm font-medium text-green-600 dark:text-green-300">Ready</span>
                     </>
                   ) : (
                     <>
-                      <AlertCircle className="h-4 w-4 text-yellow-600 animate-pulse-slow" />
-                      <span className="text-sm font-medium text-yellow-600">Pending</span>
+                      <AlertCircle className="h-4 w-4 text-yellow-600 dark:text-yellow-300 animate-pulse-slow" />
+                      <span className="text-sm font-medium text-yellow-600 dark:text-yellow-300">Pending</span>
                     </>
                   )}
                 </div>
               </div>
-              <Calendar className="h-8 w-8 text-purple-600 animate-float" />
+              <Calendar className="h-8 w-8 text-purple-600 dark:text-purple-300 animate-float" />
             </div>
           </Card>
         </div>
 
         {/* Database Stats */}
-        <Card className="p-4 mt-6 bg-gray-50 border border-gray-200">
-          <h4 className="font-medium mb-3 text-gray-800">Database Overview</h4>
+        <Card className="p-4 mt-6 bg-background/80 dark:bg-background/90 border border-gray-200 dark:border-gray-700">
+          <h4 className="font-medium mb-3 text-gray-800 dark:text-gray-100">Database Overview</h4>
           <div className="grid grid-cols-2 md:grid-cols-5 gap-4 text-center">
             <div>
-              <div className="text-xl font-bold text-gray-700">{departments.length}</div>
-              <div className="text-xs text-gray-600">Departments</div>
+              <div className="text-xl font-bold text-gray-700 dark:text-gray-200">{departments.length}</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Departments</div>
             </div>
             <div>
-              <div className="text-xl font-bold text-gray-700">{years.length}</div>
-              <div className="text-xs text-gray-600">Years</div>
+              <div className="text-xl font-bold text-gray-700 dark:text-gray-200">{years.length}</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Years</div>
             </div>
             <div>
-              <div className="text-xl font-bold text-gray-700">{sections.length}</div>
-              <div className="text-xs text-gray-600">Sections</div>
+              <div className="text-xl font-bold text-gray-700 dark:text-gray-200">{sections.length}</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Sections</div>
             </div>
             <div>
-              <div className="text-xl font-bold text-gray-700">{subjects.length}</div>
-              <div className="text-xs text-gray-600">Total Subjects</div>
+              <div className="text-xl font-bold text-gray-700 dark:text-gray-200">{subjects.length}</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Total Subjects</div>
             </div>
             <div>
-              <div className="text-xl font-bold text-gray-700">{faculty.length}</div>
-              <div className="text-xs text-gray-600">Total Faculty</div>
+              <div className="text-xl font-bold text-gray-700 dark:text-gray-200">{faculty.length}</div>
+              <div className="text-xs text-gray-600 dark:text-gray-400">Total Faculty</div>
             </div>
           </div>
         </Card>

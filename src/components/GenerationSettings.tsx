@@ -26,7 +26,7 @@ const GenerationSettings: React.FC<GenerationSettingsProps> = ({
     <Card className="p-4 mb-6 bg-gradient-to-r from-indigo-50 to-purple-50 border border-indigo-200">
       <div className="flex items-center gap-3 mb-4">
         <Settings className="h-6 w-6 text-indigo-600" />
-        <h3 className="font-semibold text-gray-800">Generation Settings</h3>
+        <h3 className="font-semibold text-gray-800">Smart Generation Settings</h3>
       </div>
       
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4">

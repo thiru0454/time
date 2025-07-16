@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Calendar, Zap, Clock, CheckCircle, Target, Brain, RefreshCw, AlertTriangle, BookOpen } from 'lucide-react';
+import { Badge } from "@/components/ui/badge";
+import { Calendar, Zap, Clock, CheckCircle, Target, Brain, RefreshCw, AlertTriangle, BookOpen, Sparkles, Building, Coffee } from 'lucide-react';
 import { useToast } from "@/hooks/use-toast";
 import { Subject, Faculty } from '@/hooks/useSupabaseData';
 import { supabase } from '@/integrations/supabase/client';
@@ -13,6 +14,7 @@ import GenerationSettings from './GenerationSettings';
 import GenerationProgress from './GenerationProgress';
 import ConflictsDisplay from './ConflictsDisplay';
 import GenerationStatistics from './GenerationStatistics';
+import EnhancedTimetableGenerator from './EnhancedTimetableGenerator';
 
 interface TimetableGeneratorProps {
   subjects: Subject[];
@@ -45,6 +47,7 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
   const [facultyAssignments, setFacultyAssignments] = useState<FacultyAssignment[]>([]);
   const [isAddingMandatory, setIsAddingMandatory] = useState(false);
   const [currentYearNumber, setCurrentYearNumber] = useState<number>(1);
+  const [useEnhancedGenerator, setUseEnhancedGenerator] = useState(false);
   const { toast } = useToast();
 
   const totalHours = subjects.reduce((sum: number, subject: Subject) => {
@@ -306,16 +309,111 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
 
   return (
     <div className="space-y-6 pb-10">
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="p-6 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm">
         <div className="text-center mb-6">
-          {/* Removed heading and description about Intelligent Timetable Generator and AI-powered scheduling */}
+          <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
+            Intelligent Timetable Generator
+          </h2>
+          <p className="text-gray-600 dark:text-zinc-400">Advanced AI-powered scheduling with automatic mandatory subjects</p>
         </div>
 
-        {/* Enhanced Mandatory Subjects Notice */}
+        {/* Generator Type Selection */}
+        <Card className="p-4 mb-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-zinc-900 dark:to-zinc-800 border-blue-200 dark:border-blue-800">
+          <div className="text-center mb-4">
+            <h3 className="font-semibold text-gray-800 dark:text-zinc-100 mb-2">Choose Generator Type</h3>
+            <p className="text-sm text-gray-600 dark:text-zinc-400">Select the type of timetable generation you want to use</p>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div 
+              className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                !useEnhancedGenerator 
+                  ? 'border-blue-500 bg-blue-50 dark:bg-blue-900 shadow-md' 
+                  : 'border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-900'
+              }`}
+              onClick={() => setUseEnhancedGenerator(false)}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <Zap className="h-5 w-5 text-blue-600" />
+                <h3 className="font-semibold">Standard Generator</h3>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                Basic timetable generation with conflict detection and mandatory subject handling.
+              </p>
+              <div className="space-y-1 text-xs">
+                <div className="flex items-center gap-1">
+                  <CheckCircle className="h-3 w-3 text-green-600" />
+                  <span>Conflict Detection</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <CheckCircle className="h-3 w-3 text-green-600" />
+                  <span>Mandatory Subjects</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <CheckCircle className="h-3 w-3 text-green-600" />
+                  <span>Faculty Workload</span>
+                </div>
+              </div>
+            </div>
+            
+            <div 
+              className={`p-4 border rounded-lg cursor-pointer transition-all ${
+                useEnhancedGenerator 
+                  ? 'border-purple-500 bg-purple-50 dark:bg-purple-900 shadow-md' 
+                  : 'border-gray-200 dark:border-zinc-700 bg-gray-50 dark:bg-zinc-900'
+              }`}
+              onClick={() => setUseEnhancedGenerator(true)}
+            >
+              <div className="flex items-center gap-2 mb-2">
+                <Sparkles className="h-5 w-5 text-purple-600" />
+                <h3 className="font-semibold">Enhanced Generator</h3>
+                <Badge variant="secondary" className="ml-auto">NEW</Badge>
+              </div>
+              <p className="text-sm text-muted-foreground mb-3">
+                Advanced AI-powered generation with room assignment, break management, and optimization.
+              </p>
+              <div className="space-y-1 text-xs">
+                <div className="flex items-center gap-1">
+                  <Brain className="h-3 w-3 text-purple-600" />
+                  <span>AI Optimization</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Building className="h-3 w-3 text-purple-600" />
+                  <span>Smart Room Assignment</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Coffee className="h-3 w-3 text-purple-600" />
+                  <span>Break Management</span>
+                </div>
+                <div className="flex items-center gap-1">
+                  <Target className="h-3 w-3 text-purple-600" />
+                  <span>Quality Scoring</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Card>
+
+        {/* Enhanced Generator */}
+        {useEnhancedGenerator && (
+          <EnhancedTimetableGenerator
+            subjects={subjects}
+            faculty={faculty}
+            selectedDepartment={selectedDepartment}
+            selectedYear={selectedYear}
+            selectedSection={selectedSection}
+            onTimetableGenerated={onTimetableGenerated}
+          />
+        )}
+
+                {/* Standard Generator */}
+        {!useEnhancedGenerator && (
+          <>
+            {/* Enhanced Mandatory Subjects Notice */}
         <Card className={`p-4 mb-6 ${
           mandatorySubjectsCount === expectedMandatoryCount 
-            ? 'bg-gradient-to-r from-green-50 to-blue-50 border-green-200' 
-            : 'bg-gradient-to-r from-orange-50 to-red-50 border-orange-200'
+            ? 'bg-gradient-to-r from-green-50 to-blue-50 border-green-200 dark:border-green-800' 
+            : 'bg-gradient-to-r from-orange-50 to-red-50 border-orange-200 dark:border-orange-800'
         }`}>
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-3">
@@ -324,12 +422,12 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
               }`} />
               <div>
                 <h3 className={`font-semibold ${
-                  mandatorySubjectsCount === expectedMandatoryCount ? 'text-green-800' : 'text-orange-800'
+                  mandatorySubjectsCount === expectedMandatoryCount ? 'text-green-800 dark:text-green-200' : 'text-orange-800 dark:text-orange-200'
                 }`}>
                   Mandatory Subjects Status (Year {currentYearNumber})
                 </h3>
                 <p className={`text-sm ${
-                  mandatorySubjectsCount === expectedMandatoryCount ? 'text-green-700' : 'text-orange-700'
+                  mandatorySubjectsCount === expectedMandatoryCount ? 'text-green-700 dark:text-green-300' : 'text-orange-700 dark:text-orange-300'
                 }`}>
                   {mandatorySubjectsCount > 0 
                     ? `${mandatorySubjectsCount}/${expectedMandatoryCount} mandatory subjects present. ${
@@ -356,8 +454,8 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
               size="sm"
               className={`${
                 mandatorySubjectsCount === expectedMandatoryCount
-                  ? 'border-green-300 text-green-700 hover:bg-green-100'
-                  : 'border-orange-300 text-orange-700 hover:bg-orange-100'
+                  ? 'border-green-300 text-green-700 hover:bg-green-100 dark:text-green-300 dark:hover:bg-green-900'
+                  : 'border-orange-300 text-orange-700 hover:bg-orange-100 dark:text-orange-300 dark:hover:bg-orange-900'
               }`}
             >
               {isAddingMandatory ? (
@@ -376,12 +474,12 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
         </Card>
 
         {/* Enhanced Conflict Detection Notice */}
-        <Card className="p-4 mb-6 bg-green-50 border border-green-200">
+        <Card className="p-4 mb-6 bg-green-50 border border-green-200 dark:border-green-800">
           <div className="flex items-center gap-3">
             <CheckCircle className="h-5 w-5 text-green-600" />
             <div>
-              <h3 className="font-semibold text-green-800">Enhanced Conflict Detection Active</h3>
-              <p className="text-sm text-green-700">
+              <h3 className="font-semibold text-green-800 dark:text-green-200">Enhanced Conflict Detection Active</h3>
+              <p className="text-sm text-green-700 dark:text-green-300">
                 Faculty scheduling conflicts prevented across all sections. Mandatory subjects prioritized on Saturdays.
               </p>
             </div>
@@ -395,7 +493,7 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
 
         {/* Enhanced Pre-generation Stats */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-                      <Card className="p-4 bg-blue-50 border-blue-200">
+                      <Card className="p-4 bg-blue-50 dark:bg-blue-900 border-blue-200 dark:border-blue-800">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-blue-600">Total Subjects</p>
@@ -406,7 +504,7 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
             </div>
           </Card>
 
-                      <Card className="p-4 bg-green-50 border-green-200">
+                      <Card className="p-4 bg-green-50 dark:bg-green-900 border-green-200 dark:border-green-800">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-green-600">Faculty</p>
@@ -416,7 +514,7 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
             </div>
           </Card>
 
-                      <Card className="p-4 bg-purple-50 border-purple-200">
+                      <Card className="p-4 bg-purple-50 dark:bg-purple-900 border-purple-200 dark:border-purple-800">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-purple-600">Total Hours</p>
@@ -426,7 +524,7 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
             </div>
           </Card>
 
-                      <Card className="p-4 bg-orange-50 border-orange-200">
+                      <Card className="p-4 bg-orange-50 dark:bg-orange-900 border-orange-200 dark:border-orange-800">
             <div className="flex items-center justify-between">
               <div>
                 <p className="text-sm font-medium text-orange-600">Capacity</p>
@@ -452,7 +550,7 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
             onClick={handleGenerateNewTimetable}
             disabled={isGenerating || subjects.length === 0 || faculty.length === 0}
             size="lg"
-            className="px-12 py-4 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl"
+            className="px-12 py-4 text-lg bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 shadow-lg hover:shadow-xl dark:from-blue-900 dark:to-purple-900"
           >
             {isGenerating ? (
               <>
@@ -471,6 +569,8 @@ const TimetableGenerator: React.FC<TimetableGeneratorProps> = ({
             Powered by AI with automatic mandatory subject scheduling on Saturdays
           </p>
         </div>
+          </>
+        )}
       </Card>
     </div>
   );

@@ -280,9 +280,9 @@ const ExportPanel: React.FC<ExportPanelProps> = ({
 
   if (!timetable) {
     return (
-      <Card className="p-8 shadow-lg border-0 bg-white/80 backdrop-blur-sm text-center">
-        <h2 className="text-2xl font-bold mb-4 text-gray-800">Export Timetable</h2>
-        <p className="text-gray-600 mb-6">No timetable available to export. Please generate a timetable first.</p>
+      <Card className="p-8 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm text-center">
+        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-zinc-100">Export Timetable</h2>
+        <p className="text-gray-600 dark:text-zinc-400 mb-6">No timetable available to export. Please generate a timetable first.</p>
         <Button variant="outline" disabled>
           <Download size={20} className="mr-2" />
           Export Not Available
@@ -293,18 +293,18 @@ const ExportPanel: React.FC<ExportPanelProps> = ({
 
   return (
     <div className="space-y-6 pb-20">
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+      <Card className="p-6 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm">
         <div className="text-center mb-6">
           <h2 className="text-3xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2">
             Export & Share Timetable
           </h2>
-          <p className="text-gray-600">Download or share your generated timetable with complete faculty details</p>
+          <p className="text-gray-600 dark:text-zinc-400">Download or share your generated timetable with complete faculty details</p>
         </div>
 
         {/* Enhanced Features Notice */}
-        <Card className="p-4 mb-6 bg-green-50 border border-green-200">
-          <h3 className="font-semibold mb-2 text-green-800">Enhanced Export Features</h3>
-          <ul className="text-sm text-green-700 space-y-1">
+        <Card className="p-4 mb-6 bg-green-50 dark:bg-green-900 border border-green-200 dark:border-green-800">
+          <h3 className="font-semibold mb-2 text-green-800 dark:text-green-200">Enhanced Export Features</h3>
+          <ul className="text-sm text-green-700 dark:text-green-300 space-y-1">
             <li>• Complete faculty assignment details included</li>
             <li>• Professional PDF formatting with college branding</li>
             <li>• Faculty contact information and specializations</li>
@@ -313,8 +313,8 @@ const ExportPanel: React.FC<ExportPanelProps> = ({
         </Card>
 
         {/* Export Format Selection */}
-        <Card className="p-4 mb-6 bg-gradient-to-r from-blue-50 to-purple-50 border border-blue-200">
-          <h3 className="font-semibold mb-4 text-gray-800">Select Export Format</h3>
+        <Card className="p-4 mb-6 bg-gradient-to-r from-blue-50 to-purple-50 dark:from-blue-900 dark:to-purple-900 border border-blue-200 dark:border-blue-800">
+          <h3 className="font-semibold mb-4 text-gray-800 dark:text-zinc-100">Select Export Format</h3>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             <Button
               variant={exportFormat === 'pdf' ? 'default' : 'outline'}
@@ -349,20 +349,20 @@ const ExportPanel: React.FC<ExportPanelProps> = ({
         </Card>
 
         {/* Timetable Preview */}
-        <Card className="p-4 mb-6 bg-gray-50">
-          <h3 className="font-semibold mb-4 text-gray-800 flex items-center gap-2">
+        <Card className="p-4 mb-6 bg-gray-50 dark:bg-zinc-900">
+          <h3 className="font-semibold mb-4 text-gray-800 dark:text-zinc-100 flex items-center gap-2">
             <Calendar size={20} />
             Timetable Preview
           </h3>
-          <div className="text-sm text-gray-600 space-y-2">
+          <div className="text-sm text-gray-600 dark:text-zinc-400 space-y-2">
             <div className="flex gap-4">
-              <Badge variant="outline" className="bg-blue-100 text-blue-800">
+              <Badge variant="outline" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200">
                 Department: {selectedDepartment}
               </Badge>
-              <Badge variant="outline" className="bg-green-100 text-green-800">
+              <Badge variant="outline" className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200">
                 Year: {selectedYear}
               </Badge>
-              <Badge variant="outline" className="bg-purple-100 text-purple-800">
+              <Badge variant="outline" className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200">
                 Section: {selectedSection}
               </Badge>
             </div>
@@ -378,7 +378,7 @@ const ExportPanel: React.FC<ExportPanelProps> = ({
             onClick={exportFormat === 'pdf' ? exportToPDF : exportToExcel}
             disabled={isExporting}
             size="lg"
-            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700"
+            className="px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 dark:from-blue-900 dark:to-purple-900"
           >
             {isExporting ? (
               <>

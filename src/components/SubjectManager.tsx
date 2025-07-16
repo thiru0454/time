@@ -447,18 +447,18 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
 
   return (
           <div className="space-y-6 pb-20">
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm interactive-card">
+      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm interactive-card dark:bg-zinc-900 dark:border-zinc-700">
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center gap-3">
                           <BookOpen className="h-6 w-6 text-blue-600" />
-            <h2 className="text-2xl font-bold text-gray-800 text-glow">Subject Management</h2>
+            <h2 className="text-2xl font-bold text-gray-800 text-glow dark:text-zinc-100">Subject Management</h2>
           </div>
           <div className="flex gap-2">
             <Button 
               onClick={addMandatorySubjects}
               disabled={isAddingMandatory}
               variant="outline"
-              className="flex items-center gap-2 interactive-button hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 border-green-300 text-green-700 hover:border-green-400"
+              className="flex items-center gap-2 interactive-button hover:bg-gradient-to-r hover:from-green-50 hover:to-blue-50 border-green-300 text-green-700 hover:border-green-400 dark:hover:from-green-900 dark:hover:to-blue-900"
             >
               {isAddingMandatory ? (
                 <>
@@ -474,55 +474,55 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
             </Button>
             <Dialog open={isAddDialogOpen} onOpenChange={setIsAddDialogOpen}>
               <DialogTrigger asChild>
-                <Button className="flex items-center gap-2 interactive-button bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700">
+                <Button className="flex items-center gap-2 interactive-button bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 dark:from-blue-900 dark:to-purple-900">
                   <Plus size={16} />
                   Add Subject
                 </Button>
               </DialogTrigger>
-              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto dialog-animate">
+              <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto dialog-animate dark:bg-zinc-900 dark:border-zinc-700">
                 <DialogHeader>
-                  <DialogTitle className="text-xl font-semibold text-glow">Add New Subject</DialogTitle>
+                  <DialogTitle className="text-xl font-semibold text-glow dark:text-zinc-100">Add New Subject</DialogTitle>
                 </DialogHeader>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-                  <div className="space-y-2 form-card-animate">
-                    <Label htmlFor="code" className="text-sm font-medium">Subject Code</Label>
+                  <div className="space-y-2 form-card-animate dark:bg-zinc-800 dark:border-zinc-700">
+                    <Label htmlFor="code" className="text-sm font-medium dark:text-zinc-200">Subject Code</Label>
                     <Input
                       id="code"
                       value={newSubject.code}
                       onChange={(e) => setNewSubject({...newSubject, code: e.target.value})}
                       placeholder="e.g., CSE101"
-                      className="form-input-animate"
+                      className="form-input-animate dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                     />
                   </div>
-                  <div className="space-y-2 form-card-animate">
-                    <Label htmlFor="name" className="text-sm font-medium">Subject Name</Label>
+                  <div className="space-y-2 form-card-animate dark:bg-zinc-800 dark:border-zinc-700">
+                    <Label htmlFor="name" className="text-sm font-medium dark:text-zinc-200">Subject Name</Label>
                     <Input
                       id="name"
                       value={newSubject.name}
                       onChange={(e) => setNewSubject({...newSubject, name: e.target.value})}
                       placeholder="e.g., Programming Fundamentals"
-                      className="form-input-animate"
+                      className="form-input-animate dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                     />
                   </div>
-                  <div className="space-y-2 form-card-animate">
-                    <Label htmlFor="abbreviation" className="text-sm font-medium">Subject Abbreviation</Label>
+                  <div className="space-y-2 form-card-animate dark:bg-zinc-800 dark:border-zinc-700">
+                    <Label htmlFor="abbreviation" className="text-sm font-medium dark:text-zinc-200">Subject Abbreviation</Label>
                     <Input
                       id="abbreviation"
                       value={newSubject.abbreviation}
                       onChange={(e) => setNewSubject({...newSubject, abbreviation: e.target.value.toUpperCase()})}
                       placeholder="e.g., PROG (auto-generated)"
-                      className="form-input-animate"
+                      className="form-input-animate dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                       maxLength={10}
                     />
-                    <p className="text-xs text-gray-500">Leave empty for auto-generation</p>
+                    <p className="text-xs text-gray-500 dark:text-zinc-400">Leave empty for auto-generation</p>
                   </div>
-                  <div className="space-y-2 form-card-animate">
-                    <Label htmlFor="type" className="text-sm font-medium">Subject Type</Label>
+                  <div className="space-y-2 form-card-animate dark:bg-zinc-800 dark:border-zinc-700">
+                    <Label htmlFor="type" className="text-sm font-medium dark:text-zinc-200">Subject Type</Label>
                     <Select value={newSubject.subject_type} onValueChange={(value) => setNewSubject({...newSubject, subject_type: value})}>
-                      <SelectTrigger className="form-input-animate">
+                      <SelectTrigger className="form-input-animate dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200">
                         <SelectValue placeholder="Select type" />
                       </SelectTrigger>
-                      <SelectContent>
+                      <SelectContent className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200">
                         <SelectItem value="theory">Theory</SelectItem>
                         <SelectItem value="practical">Practical</SelectItem>
                         <SelectItem value="lab">Lab</SelectItem>
@@ -530,8 +530,8 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                       </SelectContent>
                     </Select>
                   </div>
-                  <div className="space-y-2 form-card-animate">
-                    <Label htmlFor="hours" className="text-sm font-medium">Hours per Week</Label>
+                  <div className="space-y-2 form-card-animate dark:bg-zinc-800 dark:border-zinc-700">
+                    <Label htmlFor="hours" className="text-sm font-medium dark:text-zinc-200">Hours per Week</Label>
                     <Input
                       id="hours"
                       type="number"
@@ -539,11 +539,11 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                       max="10"
                       value={newSubject.hours_per_week}
                       onChange={(e) => setNewSubject({...newSubject, hours_per_week: parseInt(e.target.value) || 1})}
-                      className="form-input-animate"
+                      className="form-input-animate dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                     />
                   </div>
-                  <div className="space-y-2 form-card-animate">
-                    <Label htmlFor="credits" className="text-sm font-medium">Credits</Label>
+                  <div className="space-y-2 form-card-animate dark:bg-zinc-800 dark:border-zinc-700">
+                    <Label htmlFor="credits" className="text-sm font-medium dark:text-zinc-200">Credits</Label>
                     <Input
                       id="credits"
                       type="number"
@@ -551,15 +551,15 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                       max="6"
                       value={newSubject.credits}
                       onChange={(e) => setNewSubject({...newSubject, credits: parseInt(e.target.value) || 1})}
-                      className="form-input-animate"
+                      className="form-input-animate dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                     />
                   </div>
                 </div>
                 {error && (
-                  <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
+                  <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md dark:bg-red-900 dark:border-red-800 dark:text-red-200">
                     <div className="flex items-center gap-2">
                       <AlertCircle className="h-4 w-4 text-red-600" />
-                      <p className="text-sm text-red-800">{error}</p>
+                      <p className="text-sm">{error}</p>
                     </div>
                   </div>
                 )}
@@ -567,14 +567,14 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                   <Button 
                     variant="outline" 
                     onClick={() => setIsAddDialogOpen(false)}
-                    className=""
+                    className="dark:hover:bg-zinc-800"
                   >
                     Cancel
                   </Button>
                   <Button 
                     onClick={handleAddSubject} 
                     disabled={isLoading}
-                    className="bg-gradient-to-r from-blue-600 to-purple-600"
+                    className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-900 dark:to-purple-900"
                   >
                     {isLoading ? 'Adding...' : 'Add Subject'}
                   </Button>
@@ -586,14 +586,14 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
 
         {/* Mandatory Subjects Alert */}
         {mandatorySubjects.length > 0 && (
-          <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg">
+          <div className="mb-6 p-4 bg-gradient-to-r from-green-50 to-blue-50 border border-green-200 rounded-lg dark:from-green-900 dark:to-blue-900 dark:border-green-800">
             <div className="flex items-center gap-2 mb-2">
               <Star className="h-5 w-5 text-green-600" />
-              <h3 className="font-semibold text-green-800">Mandatory Subjects (Saturday Only)</h3>
+              <h3 className="font-semibold text-green-800 dark:text-green-200">Mandatory Subjects (Saturday Only)</h3>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-2">
               {mandatorySubjects.map(subject => (
-                <Badge key={subject.id} variant="outline" className="bg-green-100 text-green-800 border-green-300 justify-center py-1">
+                <Badge key={subject.id} variant="outline" className="bg-green-100 text-green-800 border-green-300 justify-center py-1 dark:bg-green-900 dark:text-green-200 dark:border-green-800">
                   {subject.name} ({subject.hours_per_week}h)
                 </Badge>
               ))}
@@ -603,41 +603,41 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
 
         {/* Statistics Cards */}
         <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-6">
-          <Card className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200">
+          <Card className="p-4 bg-gradient-to-r from-blue-50 to-blue-100 border-blue-200 dark:from-zinc-900 dark:to-zinc-800 dark:border-blue-800">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-blue-600">Total Subjects</p>
-                <p className="text-2xl font-bold text-blue-800">{subjects.length}</p>
+                <p className="text-sm font-medium text-blue-600 dark:text-blue-400">Total Subjects</p>
+                <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">{subjects.length}</p>
               </div>
               <BookOpen className="h-8 w-8 text-blue-600" />
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-r from-green-50 to-green-100 border-green-200">
+          <Card className="p-4 bg-gradient-to-r from-green-50 to-green-100 border-green-200 dark:from-green-900 dark:to-green-800 dark:border-green-800">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-green-600">Mandatory</p>
-                <p className="text-2xl font-bold text-green-800">{mandatorySubjects.length}</p>
+                <p className="text-sm font-medium text-green-600 dark:text-green-400">Mandatory</p>
+                <p className="text-2xl font-bold text-green-800 dark:text-green-200">{mandatorySubjects.length}</p>
               </div>
               <Star className="h-8 w-8 text-green-600" />
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200">
+          <Card className="p-4 bg-gradient-to-r from-purple-50 to-purple-100 border-purple-200 dark:from-purple-900 dark:to-purple-800 dark:border-purple-800">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-purple-600">Regular</p>
-                <p className="text-2xl font-bold text-purple-800">{regularSubjects.length}</p>
+                <p className="text-sm font-medium text-purple-600 dark:text-purple-400">Regular</p>
+                <p className="text-2xl font-bold text-purple-800 dark:text-purple-200">{regularSubjects.length}</p>
               </div>
               <Calendar className="h-8 w-8 text-purple-600" />
             </div>
           </Card>
 
-          <Card className="p-4 bg-gradient-to-r from-orange-50 to-orange-100 border-orange-200">
+          <Card className="p-4 bg-gradient-to-r from-orange-50 to-orange-100 border-orange-200 dark:from-orange-900 dark:to-orange-800 dark:border-orange-800">
             <div className="flex items-center justify-between">
               <div>
-                <p className="text-sm font-medium text-orange-600">Total Hours</p>
-                <p className="text-2xl font-bold text-orange-800">
+                <p className="text-sm font-medium text-orange-600 dark:text-orange-400">Total Hours</p>
+                <p className="text-2xl font-bold text-orange-800 dark:text-orange-200">
                   {subjects.reduce((sum, s) => sum + (s.hours_per_week || 0), 0)}
                 </p>
               </div>
@@ -647,85 +647,85 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
         </div>
 
         <div className="overflow-x-auto">
-          <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gradient-to-r from-gray-50 to-gray-100">
+          <table className="min-w-full divide-y divide-gray-200 dark:divide-zinc-700">
+            <thead className="bg-gradient-to-r from-gray-50 to-gray-100 dark:from-zinc-900 dark:to-zinc-800">
               <tr>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Code</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Abbreviation</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Name</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Type</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hours</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Credits</th>
-                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Assigned Faculty</th>
-                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider">Actions</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Code</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Abbreviation</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Name</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Type</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Hours</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Credits</th>
+                <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Assigned Faculty</th>
+                <th className="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider dark:text-gray-400">Actions</th>
               </tr>
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-white divide-y divide-gray-200 dark:bg-zinc-800 dark:divide-zinc-700">
               {subjects.map((subject, index) => {
                 const assignedFaculty = getAssignedFaculty(subject.id);
                 const isMandatory = mandatorySubjects.some(m => m.id === subject.id);
                 
                 return (
                   <tr key={subject.id} className={`hover:bg-gradient-to-r ${
-                    isMandatory ? 'hover:from-green-50 hover:to-blue-50 bg-green-25' : 'hover:from-blue-50 hover:to-purple-50'
+                    isMandatory ? 'hover:from-green-50 hover:to-blue-50 bg-green-25 dark:hover:from-green-900 dark:hover:to-blue-900' : 'hover:from-blue-50 hover:to-purple-50 dark:hover:from-blue-900 dark:hover:to-purple-900'
                   }`}>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap dark:text-zinc-200">
                       <div className="flex items-center gap-2">
                         {isMandatory && <Star className="h-4 w-4 text-green-600" />}
                         <span className="font-medium">{subject.code}</span>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap dark:text-zinc-200">
                       <div className="flex items-center gap-2">
-                        <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-300">
+                        <Badge variant="secondary" className="bg-blue-100 text-blue-800 border-blue-300 dark:bg-blue-900 dark:text-blue-200 dark:border-blue-800">
                           {subject.abbreviation || 'N/A'}
                         </Badge>
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap dark:text-zinc-200">
                       <div className="flex items-center gap-2">
                         {subject.name}
                         {isMandatory && (
-                          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300 text-xs">
+                          <Badge variant="outline" className="bg-green-100 text-green-800 border-green-300 text-xs dark:bg-green-900 dark:text-green-200 dark:border-green-800">
                             SAT
                           </Badge>
                         )}
                       </div>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">
-                      <Badge variant="secondary" className="capitalize">{subject.subject_type}</Badge>
+                    <td className="px-6 py-4 whitespace-nowrap dark:text-zinc-200">
+                      <Badge variant="secondary" className="capitalize dark:bg-zinc-700 dark:text-zinc-200">{subject.subject_type}</Badge>
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap">{subject.hours_per_week}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">{subject.credits}</td>
-                    <td className="px-6 py-4 whitespace-nowrap">
+                    <td className="px-6 py-4 whitespace-nowrap dark:text-zinc-200">{subject.hours_per_week}</td>
+                    <td className="px-6 py-4 whitespace-nowrap dark:text-zinc-200">{subject.credits}</td>
+                    <td className="px-6 py-4 whitespace-nowrap dark:text-zinc-200">
                       {assignedFaculty ? (
                         <div className="flex items-center gap-2">
-                          <Badge variant="outline" className="bg-green-50 text-green-800 border-green-200">
+                          <Badge variant="outline" className="bg-green-50 text-green-800 border-green-200 dark:bg-green-900 dark:text-green-200 dark:border-green-800">
                             {assignedFaculty.name}
                           </Badge>
                           <Button
                             variant="ghost"
                             size="sm"
                             onClick={() => handleUnassignFaculty(subject.id)}
-                            className="text-red-600 hover:text-red-800 hover:bg-red-50"
+                            className="text-red-600 hover:text-red-800 hover:bg-red-50 dark:hover:bg-red-900"
                             title="Unassign Faculty"
                           >
                             ×
                           </Button>
                         </div>
                       ) : (
-                        <Badge variant="outline" className="bg-gray-50 text-gray-600">
+                        <Badge variant="outline" className="bg-gray-50 text-gray-600 dark:bg-zinc-700 dark:text-zinc-400">
                           Not Assigned
                         </Badge>
                       )}
                     </td>
-                    <td className="px-6 py-4 whitespace-nowrap text-right">
+                    <td className="px-6 py-4 whitespace-nowrap text-right dark:text-zinc-200">
                       <div className="flex gap-2 justify-end">
                         <Button
                           variant="outline"
                           size="icon"
                           onClick={() => openAssignFacultyDialog(subject)}
-                          className="hover:bg-green-50"
+                          className="hover:bg-green-50 dark:hover:bg-green-900"
                           title="Assign Faculty"
                         >
                           <UserCheck className="h-4 w-4" />
@@ -734,7 +734,7 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                           variant="outline"
                           size="icon"
                           onClick={() => openEditDialog(subject)}
-                          className="hover:bg-blue-50"
+                          className="hover:bg-blue-50 dark:hover:bg-blue-900"
                           title="Edit Subject"
                         >
                           <Edit2 className="h-4 w-4" />
@@ -744,7 +744,7 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                           size="icon"
                           onClick={() => handleDeleteSubject(subject.id)}
                           disabled={isLoading}
-                          className=""
+                          className="dark:hover:bg-red-900"
                           title="Delete Subject"
                         >
                           <Trash2 className="h-4 w-4" />
@@ -761,53 +761,53 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
 
       {/* Edit Dialog */}
       <Dialog open={isEditDialogOpen} onOpenChange={closeEditDialog}>
-        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto">
+        <DialogContent className="max-w-4xl max-h-[90vh] overflow-y-auto dark:bg-zinc-900 dark:border-zinc-700">
           <DialogHeader>
-            <DialogTitle className="text-xl font-semibold">Edit Subject</DialogTitle>
+            <DialogTitle className="text-xl font-semibold dark:text-zinc-100">Edit Subject</DialogTitle>
           </DialogHeader>
           {editingSubject && (
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mt-4">
-              <div className="space-y-2">
-                <Label htmlFor="edit-code" className="text-sm font-medium">Subject Code</Label>
+              <div className="space-y-2 dark:bg-zinc-800 dark:border-zinc-700">
+                <Label htmlFor="edit-code" className="text-sm font-medium dark:text-zinc-200">Subject Code</Label>
                 <Input
                   id="edit-code"
                   value={editingSubject.code}
                   onChange={(e) => setEditingSubject({ ...editingSubject, code: e.target.value })}
                   placeholder="e.g., CSE101"
-                  className=""
+                  className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="edit-name" className="text-sm font-medium">Subject Name</Label>
+              <div className="space-y-2 dark:bg-zinc-800 dark:border-zinc-700">
+                <Label htmlFor="edit-name" className="text-sm font-medium dark:text-zinc-200">Subject Name</Label>
                 <Input
                   id="edit-name"
                   value={editingSubject.name}
                   onChange={(e) => setEditingSubject({ ...editingSubject, name: e.target.value })}
                   placeholder="e.g., Programming Fundamentals"
-                  className=""
+                  className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="edit-abbreviation" className="text-sm font-medium">Subject Abbreviation</Label>
+              <div className="space-y-2 dark:bg-zinc-800 dark:border-zinc-700">
+                <Label htmlFor="edit-abbreviation" className="text-sm font-medium dark:text-zinc-200">Subject Abbreviation</Label>
                 <Input
                   id="edit-abbreviation"
                   value={editingSubject.abbreviation || ''}
                   onChange={(e) => setEditingSubject({ ...editingSubject, abbreviation: e.target.value.toUpperCase() })}
                   placeholder="e.g., PROG"
-                  className=""
+                  className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                   maxLength={10}
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="edit-type" className="text-sm font-medium">Subject Type</Label>
+              <div className="space-y-2 dark:bg-zinc-800 dark:border-zinc-700">
+                <Label htmlFor="edit-type" className="text-sm font-medium dark:text-zinc-200">Subject Type</Label>
                 <Select 
                   value={editingSubject.subject_type} 
                   onValueChange={(value) => setEditingSubject({ ...editingSubject, subject_type: value })}
                 >
-                  <SelectTrigger className="">
+                  <SelectTrigger className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200">
                     <SelectValue placeholder="Select type" />
                   </SelectTrigger>
-                  <SelectContent>
+                  <SelectContent className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200">
                     <SelectItem value="theory">Theory</SelectItem>
                     <SelectItem value="practical">Practical</SelectItem>
                     <SelectItem value="lab">Lab</SelectItem>
@@ -815,8 +815,8 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                   </SelectContent>
                 </Select>
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="edit-hours" className="text-sm font-medium">Hours per Week</Label>
+              <div className="space-y-2 dark:bg-zinc-800 dark:border-zinc-700">
+                <Label htmlFor="edit-hours" className="text-sm font-medium dark:text-zinc-200">Hours per Week</Label>
                 <Input
                   id="edit-hours"
                   type="number"
@@ -824,11 +824,11 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                   max="10"
                   value={editingSubject.hours_per_week}
                   onChange={(e) => setEditingSubject({ ...editingSubject, hours_per_week: parseInt(e.target.value) || 1 })}
-                  className=""
+                  className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                 />
               </div>
-              <div className="space-y-2">
-                <Label htmlFor="edit-credits" className="text-sm font-medium">Credits</Label>
+              <div className="space-y-2 dark:bg-zinc-800 dark:border-zinc-700">
+                <Label htmlFor="edit-credits" className="text-sm font-medium dark:text-zinc-200">Credits</Label>
                 <Input
                   id="edit-credits"
                   type="number"
@@ -836,16 +836,16 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                   max="6"
                   value={editingSubject.credits}
                   onChange={(e) => setEditingSubject({ ...editingSubject, credits: parseInt(e.target.value) || 1 })}
-                  className=""
+                  className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200"
                 />
               </div>
             </div>
           )}
           {error && (
-            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md">
+            <div className="mt-4 p-3 bg-red-50 border border-red-200 rounded-md dark:bg-red-900 dark:border-red-800 dark:text-red-200">
               <div className="flex items-center gap-2">
                 <AlertCircle className="h-4 w-4 text-red-600" />
-                <p className="text-sm text-red-800">{error}</p>
+                <p className="text-sm">{error}</p>
               </div>
             </div>
           )}
@@ -853,14 +853,14 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
             <Button 
               variant="outline" 
               onClick={closeEditDialog}
-              className=""
+              className="dark:hover:bg-zinc-800"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleEditSubject} 
               disabled={isLoading}
-              className="bg-gradient-to-r from-blue-600 to-purple-600"
+              className="bg-gradient-to-r from-blue-600 to-purple-600 dark:from-blue-900 dark:to-purple-900"
             >
               {isLoading ? 'Updating...' : 'Update Subject'}
             </Button>
@@ -870,42 +870,42 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
 
       {/* Assign Faculty Dialog */}
       <Dialog open={isAssignFacultyDialogOpen} onOpenChange={setIsAssignFacultyDialogOpen}>
-        <DialogContent className="max-w-2xl">
+        <DialogContent className="max-w-2xl dark:bg-zinc-900 dark:border-zinc-700">
           <DialogHeader>
-            <DialogTitle className="text-xl font-semibold flex items-center gap-2">
+            <DialogTitle className="text-xl font-semibold flex items-center gap-2 dark:text-zinc-100">
               <UserCheck className="h-5 w-5 text-blue-600" />
               Assign Faculty to {assigningSubject?.name}
             </DialogTitle>
           </DialogHeader>
           <div className="space-y-4 mt-4">
-            <div className="p-4 bg-blue-50 rounded-lg">
-              <p className="text-sm text-blue-800">
+            <div className="p-4 bg-blue-50 rounded-lg dark:bg-blue-900">
+              <p className="text-sm text-blue-800 dark:text-blue-200">
                 <strong>Subject:</strong> {assigningSubject?.code} - {assigningSubject?.name}
               </p>
-              <p className="text-sm text-blue-800">
+              <p className="text-sm text-blue-800 dark:text-blue-200">
                 <strong>Type:</strong> {assigningSubject?.subject_type}
               </p>
-              <p className="text-sm text-blue-800">
+              <p className="text-sm text-blue-800 dark:text-blue-200">
                 <strong>Hours per Week:</strong> {assigningSubject?.hours_per_week}
               </p>
             </div>
             
-            <div className="space-y-2">
-              <Label htmlFor="faculty-select" className="text-sm font-medium">Select Faculty</Label>
+            <div className="space-y-2 dark:bg-zinc-800 dark:border-zinc-700">
+              <Label htmlFor="faculty-select" className="text-sm font-medium dark:text-zinc-200">Select Faculty</Label>
               <Select value={selectedFacultyId} onValueChange={setSelectedFacultyId}>
-                <SelectTrigger className="">
+                <SelectTrigger className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200">
                   <SelectValue placeholder="Choose a faculty member" />
                 </SelectTrigger>
-                <SelectContent>
+                <SelectContent className="dark:bg-zinc-800 dark:border-zinc-700 dark:text-zinc-200">
                   {faculty
                     .filter(f => f.department_id === selectedDepartment)
                     .map(f => (
                       <SelectItem key={f.id} value={f.id}>
                         <div className="flex flex-col">
                           <span className="font-medium">{f.name}</span>
-                          <span className="text-xs text-gray-600">{f.email}</span>
+                          <span className="text-xs text-gray-600 dark:text-zinc-400">{f.email}</span>
                           {f.specialization && f.specialization.length > 0 && (
-                            <span className="text-xs text-blue-600">
+                            <span className="text-xs text-blue-600 dark:text-blue-400">
                               Specialization: {f.specialization.join(', ')}
                             </span>
                           )}
@@ -925,14 +925,14 @@ const SubjectManager: React.FC<SubjectManagerProps> = ({
                 setAssigningSubject(null);
                 setSelectedFacultyId('');
               }}
-              className=""
+              className="dark:hover:bg-zinc-800"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleAssignFaculty} 
               disabled={isLoading || !selectedFacultyId}
-              className="bg-gradient-to-r from-green-600 to-blue-600"
+              className="bg-gradient-to-r from-green-600 to-blue-600 dark:from-green-900 dark:to-blue-900"
             >
               {isLoading ? 'Assigning...' : 'Assign Faculty'}
             </Button>
