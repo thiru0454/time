@@ -3,6 +3,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { signIn, signUp, resetPassword, createProfile, getProfileById } from '@/integrations/supabase/client';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const Auth: React.FC = () => {
   const [tab, setTab] = useState<'login' | 'register' | 'reset'>('login');
@@ -86,38 +88,42 @@ const Auth: React.FC = () => {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <Card className="w-full max-w-md p-8 shadow-lg">
-        <div className="flex justify-center mb-6 gap-2">
-          <Button variant={tab === 'login' ? 'default' : 'outline'} onClick={() => setTab('login')}>Login</Button>
-          <Button variant={tab === 'register' ? 'default' : 'outline'} onClick={() => setTab('register')}>Register</Button>
-          <Button variant={tab === 'reset' ? 'default' : 'outline'} onClick={() => setTab('reset')}>Reset Password</Button>
-        </div>
-        {tab === 'login' && (
-          <form onSubmit={handleLogin} className="space-y-4">
-            <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-            <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-            <Button type="submit" className="w-full" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</Button>
-          </form>
-        )}
-        {tab === 'register' && (
-          <form onSubmit={handleRegister} className="space-y-4">
-            <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-            <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
-            <Input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
-            <Button type="submit" className="w-full" disabled={loading}>{loading ? 'Registering...' : 'Register'}</Button>
-          </form>
-        )}
-        {tab === 'reset' && (
-          <form onSubmit={handleReset} className="space-y-4">
-            <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
-            <Button type="submit" className="w-full" disabled={loading}>{loading ? 'Sending...' : 'Send Reset Email'}</Button>
-          </form>
-        )}
-        {error && <div className="text-red-600 mt-4 text-center">{error}</div>}
-        {message && <div className="text-green-600 mt-4 text-center">{message}</div>}
-      </Card>
-    </div>
+    <>
+      <Navbar />
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        <Card className="w-full max-w-md p-8 shadow-lg">
+          <div className="flex justify-center mb-6 gap-2">
+            <Button variant={tab === 'login' ? 'default' : 'outline'} onClick={() => setTab('login')}>Login</Button>
+            <Button variant={tab === 'register' ? 'default' : 'outline'} onClick={() => setTab('register')}>Register</Button>
+            <Button variant={tab === 'reset' ? 'default' : 'outline'} onClick={() => setTab('reset')}>Reset Password</Button>
+          </div>
+          {tab === 'login' && (
+            <form onSubmit={handleLogin} className="space-y-4">
+              <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+              <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+              <Button type="submit" className="w-full" disabled={loading}>{loading ? 'Logging in...' : 'Login'}</Button>
+            </form>
+          )}
+          {tab === 'register' && (
+            <form onSubmit={handleRegister} className="space-y-4">
+              <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+              <Input type="password" placeholder="Password" value={password} onChange={e => setPassword(e.target.value)} required />
+              <Input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={e => setConfirmPassword(e.target.value)} required />
+              <Button type="submit" className="w-full" disabled={loading}>{loading ? 'Registering...' : 'Register'}</Button>
+            </form>
+          )}
+          {tab === 'reset' && (
+            <form onSubmit={handleReset} className="space-y-4">
+              <Input type="email" placeholder="Email" value={email} onChange={e => setEmail(e.target.value)} required />
+              <Button type="submit" className="w-full" disabled={loading}>{loading ? 'Sending...' : 'Send Reset Email'}</Button>
+            </form>
+          )}
+          {error && <div className="text-red-600 mt-4 text-center">{error}</div>}
+          {message && <div className="text-green-600 mt-4 text-center">{message}</div>}
+        </Card>
+      </div>
+      <Footer />
+    </>
   );
 };
 

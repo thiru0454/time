@@ -3,6 +3,8 @@ import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { getUser, getProfileById, createProfile, resetPassword } from '@/integrations/supabase/client';
+import Navbar from '@/components/Navbar';
+import Footer from '@/components/Footer';
 
 const Profile: React.FC = () => {
   const [profile, setProfile] = useState<any>(null);
@@ -78,33 +80,37 @@ const Profile: React.FC = () => {
   }
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
-      <Card className="w-full max-w-md p-8 shadow-lg">
-        <h2 className="text-2xl font-bold mb-6 text-center">My Profile</h2>
-        <form onSubmit={handleSave} className="space-y-4">
-          <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
-            <Input type="email" value={email} disabled />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Full Name</label>
-            <Input type="text" value={fullName} onChange={e => setFullName(e.target.value)} />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Avatar URL</label>
-            <Input type="text" value={avatarUrl} onChange={e => setAvatarUrl(e.target.value)} />
-          </div>
-          <div>
-            <label className="block text-sm font-medium mb-1">Role</label>
-            <Input type="text" value={role} disabled />
-          </div>
-          <Button type="submit" className="w-full" disabled={saving}>{saving ? 'Saving...' : 'Save Changes'}</Button>
-        </form>
-        <Button variant="outline" className="w-full mt-4" onClick={handlePasswordReset}>Send Password Reset Email</Button>
-        {error && <div className="text-red-600 mt-4 text-center">{error}</div>}
-        {message && <div className="text-green-600 mt-4 text-center">{message}</div>}
-      </Card>
-    </div>
+    <>
+      <Navbar />
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50">
+        <Card className="w-full max-w-md p-8 shadow-lg">
+          <h2 className="text-2xl font-bold mb-6 text-center">My Profile</h2>
+          <form onSubmit={handleSave} className="space-y-4">
+            <div>
+              <label className="block text-sm font-medium mb-1">Email</label>
+              <Input type="email" value={email} disabled />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Full Name</label>
+              <Input type="text" value={fullName} onChange={e => setFullName(e.target.value)} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Avatar URL</label>
+              <Input type="text" value={avatarUrl} onChange={e => setAvatarUrl(e.target.value)} />
+            </div>
+            <div>
+              <label className="block text-sm font-medium mb-1">Role</label>
+              <Input type="text" value={role} disabled />
+            </div>
+            <Button type="submit" className="w-full" disabled={saving}>{saving ? 'Saving...' : 'Save Changes'}</Button>
+          </form>
+          <Button variant="outline" className="w-full mt-4" onClick={handlePasswordReset}>Send Password Reset Email</Button>
+          {error && <div className="text-red-600 mt-4 text-center">{error}</div>}
+          {message && <div className="text-green-600 mt-4 text-center">{message}</div>}
+        </Card>
+      </div>
+      <Footer />
+    </>
   );
 };
 

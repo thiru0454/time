@@ -122,15 +122,16 @@ All colors MUST be HSL.
   to { opacity: 0; transform: translateY(24px); }
 }
 
-/* Fade Hover Effect */
+/* Fade Hover Effect (disabled)
 .fade-hover {
   transition: background 0.3s, color 0.3s, box-shadow 0.3s, opacity 0.3s;
   opacity: 1;
 }
-.fade-hover:hover, .fade-hover:focus {
-  opacity: 0.7;
-  box-shadow: 0 6px 24px 0 rgba(99, 102, 241, 0.12);
-}
+// .fade-hover:hover, .fade-hover:focus {
+//   opacity: 0.7;
+//   box-shadow: 0 6px 24px 0 rgba(99, 102, 241, 0.12);
+// }
+*/
 
 /* Staggered List Animation */
 .stagger-fade-in > * {
