@@ -51,6 +51,17 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
     loadStoredTimetables();
   }, [selectedDepartment, selectedYear, selectedSection]);
 
+  // Show the most recent/active timetable by default if no new timetable is passed
+  useEffect(() => {
+    if (!timetable && storedTimetables.length > 0) {
+      // Prefer active timetable, else most recent
+      const active = storedTimetables.find(t => t.is_active);
+      const latest = storedTimetables[0];
+      setCurrentTimetable((active || latest)?.timetable_data);
+      setSelectedTimetable(active || latest || null);
+    }
+  }, [timetable, storedTimetables]);
+
   // Update current timetable when new timetable is generated
   useEffect(() => {
     if (timetable) {
@@ -137,17 +148,17 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
 
   if (!currentTimetable) {
     return (
-      <Card className="p-8 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm text-center">
-        <Calendar size={48} className="mx-auto mb-4 text-gray-400" />
-        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-zinc-100">Timetable Viewer</h2>
-        <p className="text-gray-600 dark:text-zinc-400 mb-4">No timetable available.</p>
+      <Card className="p-8 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm text-center fade-hover animate-fade-in">
+        <Calendar size={48} className="mx-auto mb-4 text-gray-400 fade-hover" />
+        <h2 className="text-2xl font-bold mb-4 text-gray-800 dark:text-zinc-100 fade-hover">Timetable Viewer</h2>
+        <p className="text-gray-600 dark:text-zinc-400 mb-4 fade-hover">No timetable available.</p>
         <div className="flex justify-center gap-4">
           <Button 
             onClick={() => setShowHistoryDialog(true)}
             variant="outline"
-            className="flex items-center gap-2"
+            className="flex items-center gap-2 btn-animate animate-bounce-in fade-hover"
           >
-            <History className="h-4 w-4" />
+            <History className="h-4 w-4 fade-hover" />
             View History
           </Button>
         </div>
@@ -203,10 +214,10 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
   };
 
   return (
-    <div className="space-y-6 pb-20">
-      <Card className="p-6 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm">
+    <div className="space-y-6 pb-20 animate-fade-in">
+      <Card className="p-6 shadow-lg border-0 bg-white/80 dark:bg-zinc-900 backdrop-blur-sm animate-fade-in">
         <div className="flex justify-between items-center mb-6">
-          <div className="text-center flex-1">
+          <div className="text-center flex-1 fade-hover">
             <h2 className="text-2xl font-bold text-gray-800 dark:text-zinc-100 mb-2">Timetable</h2>
             <p className="text-gray-600 dark:text-zinc-400">Weekly schedule for the selected class</p>
             {selectedTimetable && (
@@ -224,7 +235,7 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
             <Button 
               onClick={() => setShowHistoryDialog(true)}
               variant="outline"
-              className="flex items-center gap-2"
+              className="flex items-center gap-2 fade-hover"
             >
               <History className="h-4 w-4" />
               History
@@ -233,7 +244,7 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
               <Button 
                 onClick={() => handleSetActive(selectedTimetable.id)}
                 variant="outline"
-                className="flex items-center gap-2"
+                className="flex items-center gap-2 fade-hover"
                 disabled={selectedTimetable.is_active}
               >
                 <Eye className="h-4 w-4" />
@@ -244,10 +255,10 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
         </div>
 
         {/* Timetable Grid */}
-        <div className="overflow-x-auto">
-          <Table className="w-full border-collapse border border-gray-300 dark:border-zinc-700">
+        <div className="overflow-x-auto animate-fade-in">
+          <Table className="w-full border-collapse border border-gray-300 dark:border-zinc-700 rounded-lg shadow-sm animate-fade-in">
             <TableHeader>
-              <TableRow>
+              <TableRow className="transition-all duration-300 hover:bg-blue-50">
                 <TableHead rowSpan={2} className="text-center border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800 font-bold">
                   Day
                 </TableHead>
@@ -309,7 +320,7 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
         {/* Enhanced Subject Details Table with Faculty Information */}
         <div className="mt-8">
           <h3 className="text-lg font-semibold mb-4 text-gray-800 dark:text-zinc-100">Subject Details with Faculty Assignment</h3>
-          <Table className="w-full border-collapse border border-gray-300 dark:border-zinc-700">
+          <Table className="w-full border-collapse border border-gray-300 dark:border-zinc-700 rounded-lg shadow-sm fade-hover animate-fade-in">
             <TableHeader>
               <TableRow>
                 <TableHead className="border border-gray-300 dark:border-zinc-700 bg-gray-100 dark:bg-zinc-800">Sub. Code</TableHead>
@@ -341,7 +352,7 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
                   <TableRow key={subject.id}>
                     <TableCell className="border border-gray-300 dark:border-zinc-700 font-medium text-gray-800 dark:text-zinc-100">{subject.code}</TableCell>
                     <TableCell className="border border-gray-300 dark:border-zinc-700">
-                      <Badge variant="secondary" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-800">
+                      <Badge variant="secondary" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-800 transition-all duration-300 hover:scale-105">
                         {subject.abbreviation || 'N/A'}
                       </Badge>
                     </TableCell>
@@ -447,7 +458,7 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
                         onClick={() => handleTimetableSelect(timetable)}
                         variant="outline"
                         size="sm"
-                        className="flex items-center gap-1"
+                        className="flex items-center gap-1 fade-hover"
                       >
                         <Eye className="h-4 w-4" />
                         View
@@ -457,7 +468,7 @@ const TimetableViewer: React.FC<TimetableViewerProps> = ({
                           onClick={() => handleSetActive(timetable.id)}
                           variant="outline"
                           size="sm"
-                          className="flex items-center gap-1"
+                          className="flex items-center gap-1 fade-hover"
                         >
                           <Calendar className="h-4 w-4" />
                           Set Active

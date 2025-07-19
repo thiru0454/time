@@ -137,17 +137,17 @@ const TimetableManagement = () => {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-background text-foreground flex items-center justify-center">
+      <div className="min-h-screen bg-background text-foreground flex items-center justify-center animate-fade-in">
         <div className="text-center">
-          <div className="rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4"></div>
-          <p className="text-gray-600 dark:text-gray-300">Loading data...</p>
+          <div className="rounded-full h-12 w-12 border-b-2 border-blue-600 mx-auto mb-4 animate-spin fade-hover"></div>
+          <p className="text-gray-600 dark:text-gray-300 fade-hover">Loading data...</p>
         </div>
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-background text-foreground page-transition">
+    <div className="min-h-screen bg-background text-foreground page-transition animate-fade-in">
       <div className="container mx-auto px-4 py-8 pb-32">
         {/* Header */}
         <div className="text-center mb-8 animate-fade-in">
@@ -155,34 +155,34 @@ const TimetableManagement = () => {
             <Button
               variant="outline"
               onClick={() => navigate('/')} 
-              className="flex items-center gap-2 hover:bg-background/80 dark:hover:bg-background/90 btn-animate"
+              className="flex items-center gap-2 hover:bg-background/80 dark:hover:bg-background/90 btn-animate animate-bounce-in fade-hover"
             >
-              <ArrowLeft size={16} className="icon-bounce" />
+              <ArrowLeft size={16} className="icon-bounce fade-hover" />
               Back to Selection
             </Button>
           </div>
           
-          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-shimmer animate-bounce-in">
+          <h1 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-2 text-shimmer animate-bounce-in fade-hover">
             Timetable Management
           </h1>
-          <p className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-1 animate-slide-up">Sona College of Technology</p>
+          <p className="text-xl font-semibold text-gray-700 dark:text-gray-200 mb-1 animate-slide-up fade-hover">Sona College of Technology</p>
           
           <div className="mt-4 flex justify-center gap-2 stagger-animation">
-            <Badge variant="outline" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-700 px-4 py-2 hover-scale">
+            <Badge variant="outline" className="bg-blue-100 dark:bg-blue-900 text-blue-800 dark:text-blue-200 border-blue-300 dark:border-blue-700 px-4 py-2 hover-scale animate-fade-in fade-hover">
               {departmentName}
             </Badge>
-            <Badge variant="outline" className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-300 dark:border-green-700 px-4 py-2 hover-scale">
+            <Badge variant="outline" className="bg-green-100 dark:bg-green-900 text-green-800 dark:text-green-200 border-green-300 dark:border-green-700 px-4 py-2 hover-scale animate-fade-in fade-hover">
               {yearName}
             </Badge>
-            <Badge variant="outline" className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700 px-4 py-2 hover-scale">
+            <Badge variant="outline" className="bg-purple-100 dark:bg-purple-900 text-purple-800 dark:text-purple-200 border-purple-300 dark:border-purple-700 px-4 py-2 hover-scale animate-fade-in fade-hover">
               Section {sectionName}
             </Badge>
           </div>
         </div>
 
         {/* Navigation */}
-        <Card className="mb-8 p-6 shadow-lg border-0 bg-background/80 dark:bg-background/90 backdrop-blur-sm animate-slide-up card-hover">
-          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 stagger-animation">
+        <Card className="mb-8 p-6 shadow-lg border-0 bg-background/80 dark:bg-background/90 backdrop-blur-sm animate-slide-up card-hover animate-fade-in fade-hover custom-transition">
+          <div className="grid grid-cols-1 md:grid-cols-3 lg:grid-cols-5 gap-4 stagger-fade-in">
             {navigationItems.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -190,45 +190,22 @@ const TimetableManagement = () => {
                   key={item.id}
                   variant={currentView === item.id ? "default" : "outline"}
                   onClick={() => setCurrentView(item.id)}
-                  className={`h-auto py-4 px-4 flex flex-col items-center gap-2 btn-animate ${
+                  className={`h-auto py-4 px-4 flex flex-col items-center gap-2 btn-animate animate-bounce-in fade-hover custom-transition ${
                     currentView === item.id 
                       ? 'bg-gradient-to-r from-blue-600 to-purple-600 text-white shadow-lg animate-glow' 
                       : 'hover:bg-background/80 dark:hover:bg-background/90'
                   }`}
                 >
-                  <Icon size={24} className="icon-bounce" />
-                  <span className="text-sm font-medium text-center">{item.label}</span>
+                  <Icon size={24} className="icon-bounce fade-hover" />
+                  <span className="text-sm font-medium text-center fade-hover">{item.label}</span>
                 </Button>
               );
             })}
           </div>
         </Card>
 
-        {/* Quick Stats */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-          <Card className="p-4 bg-background/80 dark:bg-background/90 border border-blue-200 dark:border-blue-800">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-blue-600 dark:text-blue-300">Available Subjects</p>
-                <p className="text-2xl font-bold text-blue-800 dark:text-blue-200">{filteredSubjects.length}</p>
-              </div>
-              <BookOpen className="h-8 w-8 text-blue-600 dark:text-blue-300" />
-            </div>
-          </Card>
-
-          <Card className="p-4 bg-background/80 dark:bg-background/90 border border-green-200 dark:border-green-800">
-            <div className="flex items-center justify-between">
-              <div>
-                <p className="text-sm font-medium text-green-600 dark:text-green-300">Available Faculty</p>
-                <p className="text-2xl font-bold text-green-800 dark:text-green-200">{filteredFaculty.length}</p>
-              </div>
-              <Users className="h-8 w-8 text-green-600 dark:text-green-300" />
-            </div>
-          </Card>
-        </div>
-
         {/* Main Content */}
-        <div className="mb-32">
+        <div className="mb-32 animate-fade-in fade-hover">
           {renderCurrentView()}
         </div>
       </div>

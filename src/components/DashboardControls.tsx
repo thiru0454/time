@@ -50,48 +50,46 @@ const DashboardControls: React.FC<DashboardControlsProps> = ({
   ];
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-6 animate-fade-in">
       {/* Selection Controls */}
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-        <h2 className="text-2xl font-bold mb-6 text-gray-800">Department & Class Selection</h2>
+      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm fade-hover animate-fade-in">
+        <h2 className="text-2xl font-bold mb-6 text-gray-800 fade-hover">Department & Class Selection</h2>
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Department</label>
-            <Select value={selectedDepartment} onValueChange={setSelectedDepartment}>
-              <SelectTrigger className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-2 fade-hover">Department</label>
+            <Select value={selectedDepartment} onValueChange={setSelectedDepartment} className="fade-hover">
+              <SelectTrigger className="w-full fade-hover">
                 <SelectValue placeholder="Select Department" />
               </SelectTrigger>
               <SelectContent>
                 {departments.map((dept) => (
-                  <SelectItem key={dept} value={dept}>{dept}</SelectItem>
+                  <SelectItem key={dept} value={dept} className="fade-hover">{dept}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
-          
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Year</label>
-            <Select value={selectedYear} onValueChange={setSelectedYear}>
-              <SelectTrigger className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-2 fade-hover">Year</label>
+            <Select value={selectedYear} onValueChange={setSelectedYear} className="fade-hover">
+              <SelectTrigger className="w-full fade-hover">
                 <SelectValue placeholder="Select Year" />
               </SelectTrigger>
               <SelectContent>
                 {years.map((year) => (
-                  <SelectItem key={year} value={year}>{year}</SelectItem>
+                  <SelectItem key={year} value={year} className="fade-hover">{year}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
           </div>
-          
           <div>
-            <label className="block text-sm font-medium text-gray-700 mb-2">Section</label>
-            <Select value={selectedSection} onValueChange={setSelectedSection}>
-              <SelectTrigger className="w-full">
+            <label className="block text-sm font-medium text-gray-700 mb-2 fade-hover">Section</label>
+            <Select value={selectedSection} onValueChange={setSelectedSection} className="fade-hover">
+              <SelectTrigger className="w-full fade-hover">
                 <SelectValue placeholder="Select Section" />
               </SelectTrigger>
               <SelectContent>
                 {sections.map((section) => (
-                  <SelectItem key={section} value={section}>Section {section}</SelectItem>
+                  <SelectItem key={section} value={section} className="fade-hover">Section {section}</SelectItem>
                 ))}
               </SelectContent>
             </Select>
@@ -101,49 +99,47 @@ const DashboardControls: React.FC<DashboardControlsProps> = ({
 
       {/* Status Overview */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+        <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm fade-hover animate-fade-in">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Total Subjects</p>
-              <p className="text-3xl font-bold text-blue-600">{subjects.length}</p>
+              <p className="text-sm text-gray-600 fade-hover">Total Subjects</p>
+              <p className="text-3xl font-bold text-blue-600 fade-hover">{subjects.length}</p>
             </div>
-            <BookOpen className="h-8 w-8 text-blue-600" />
+            <BookOpen className="h-8 w-8 text-blue-600 fade-hover" />
           </div>
         </Card>
-        
-        <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+        <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm fade-hover animate-fade-in">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Faculty Members</p>
-              <p className="text-3xl font-bold text-green-600">{faculty.length}</p>
+              <p className="text-sm text-gray-600 fade-hover">Faculty Members</p>
+              <p className="text-3xl font-bold text-green-600 fade-hover">{faculty.length}</p>
             </div>
-            <Users className="h-8 w-8 text-green-600" />
+            <Users className="h-8 w-8 text-green-600 fade-hover" />
           </div>
         </Card>
-        
-        <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
+        <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm fade-hover animate-fade-in">
           <div className="flex items-center justify-between">
             <div>
-              <p className="text-sm text-gray-600">Status</p>
-              <p className="text-lg font-medium text-purple-600">
+              <p className="text-sm text-gray-600 fade-hover">Status</p>
+              <p className="text-lg font-medium text-purple-600 fade-hover">
                 {selectedDepartment && selectedYear && selectedSection ? 'Ready' : 'Setup Required'}
               </p>
             </div>
             {selectedDepartment && selectedYear && selectedSection ? (
-              <Calendar className="h-8 w-8 text-purple-600" />
+              <Calendar className="h-8 w-8 text-purple-600 fade-hover" />
             ) : (
-              <AlertCircle className="h-8 w-8 text-orange-600" />
+              <AlertCircle className="h-8 w-8 text-orange-600 fade-hover" />
             )}
           </div>
         </Card>
       </div>
 
       {/* Time Structure */}
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-        <h3 className="text-xl font-bold mb-4 text-gray-800">Daily Time Structure</h3>
+      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm fade-hover animate-fade-in">
+        <h3 className="text-xl font-bold mb-4 text-gray-800 fade-hover">Daily Time Structure</h3>
         <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
           {timeSlots.map((slot, index) => (
-            <div key={index} className={`p-3 rounded-lg text-center ${
+            <div key={index} className={`p-3 rounded-lg text-center fade-hover animate-fade-in ${
               slot.period === 'LUNCH' 
                 ? 'bg-orange-100 text-orange-800 border-2 border-orange-300' 
                 : 'bg-blue-50 text-blue-800 border border-blue-200'
@@ -156,16 +152,16 @@ const DashboardControls: React.FC<DashboardControlsProps> = ({
       </Card>
 
       {/* Special Sessions */}
-      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm">
-        <h3 className="text-xl font-bold mb-4 text-gray-800">Auto-Scheduled Special Sessions</h3>
+      <Card className="p-6 shadow-lg border-0 bg-white/80 backdrop-blur-sm fade-hover animate-fade-in">
+        <h3 className="text-xl font-bold mb-4 text-gray-800 fade-hover">Auto-Scheduled Special Sessions</h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
           {specialSessions.map((session, index) => (
-            <div key={index} className="p-4 rounded-lg border border-gray-200">
+            <div key={index} className="p-4 rounded-lg border border-gray-200 fade-hover animate-fade-in">
               <div className="flex items-center justify-between mb-2">
-                <Badge className={session.color}>{session.name}</Badge>
-                <span className="text-sm font-medium">{session.hours} hrs/week</span>
+                <Badge className={session.color + ' fade-hover'}>{session.name}</Badge>
+                <span className="text-sm font-medium fade-hover">{session.hours} hrs/week</span>
               </div>
-              <p className="text-sm text-gray-600">{session.applies}</p>
+              <p className="text-sm text-gray-600 fade-hover">{session.applies}</p>
             </div>
           ))}
         </div>
